@@ -16,3 +16,4 @@ rootProject.name = "Test Task"
 include ':app'
 include ':detail_screen'
 include ':navigation'
+include ':cart_screen'
