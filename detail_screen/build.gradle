@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace 'com.example.testtask.effective'
+    namespace 'com.example.testtask.detail_screen'
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.example.testtask.effective"
+        applicationId "com.example.testtask.detail_screen"
         minSdk 26
         targetSdk 33
         versionCode 1
@@ -30,15 +30,34 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+    viewBinding {
+        enabled true
+    }
 }
 
 dependencies {
 
-    implementation 'androidx.core:core-ktx:1.7.0'
+    implementation 'androidx.core:core-ktx:1.9.0'
     implementation 'androidx.appcompat:appcompat:1.5.1'
     implementation 'com.google.android.material:material:1.7.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.4'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.0'
+
+    def retrofit_version = "2.9.0"
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
+
+    def interceptor_version = "4.10.0"
+    implementation "com.squareup.okhttp3:logging-interceptor:$interceptor_version"
+
+    def coin_version = "3.2.2"
+
+    implementation "io.insert-koin:koin-core:$coin_version"
+    implementation "io.insert-koin:koin-android:$coin_version"
+
+    def glide_version = "4.13.0"
+
+    implementation "com.github.bumptech.glide:glide:$glide_version"
 }
