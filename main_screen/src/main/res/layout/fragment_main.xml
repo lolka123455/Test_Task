@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    android:orientation="vertical">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@color/background"
+        app:elevation="0dp">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:layout_width="@dimen/small_icon_size"
+                    android:layout_height="@dimen/small_icon_size"
+                    android:layout_marginEnd="@dimen/margin_8"
+                    android:scaleType="center"
+                    android:src="@drawable/ic_geo" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="none"
+                    android:maxEms="16"
+                    android:singleLine="true"
+                    android:text="@string/geo_text"
+                    android:textSize="15sp" />
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:layout_width="@dimen/small_icon_size"
+                    android:layout_height="@dimen/small_icon_size"
+                    android:layout_marginStart="@dimen/margin_8"
+                    android:scaleType="center"
+                    android:src="@drawable/ic_arrow_down" />
+
+            </LinearLayout>
+
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/iv_filter"
+                android:layout_width="@dimen/small_icon_size"
+                android:layout_height="@dimen/small_icon_size"
+                android:layout_gravity="end|center"
+                android:layout_marginEnd="@dimen/margin_32"
+                android:scaleType="center"
+                android:src="@drawable/ic_filter_icon" />
+
+        </FrameLayout>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_main"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@color/background"
+        android:overScrollMode="ifContentScrolls"
+        android:paddingHorizontal="@dimen/margin_16"
+        tools:listitem="@layout/item_categories" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@drawable/bottom_nav_shape"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingHorizontal="64dp">
+
+        <TextView
+            android:id="@+id/tv_bottom_nav"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawablePadding="8dp"
+            android:gravity="center"
+            android:text="@string/explorer"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            app:drawableStartCompat="@drawable/ic_bottom_dot" />
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <FrameLayout
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_gravity="center">
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/iv_bottom_cart"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:scaleType="center"
+                    android:src="@drawable/ic_bottom_cart_icon" />
+
+                <TextView
+                    android:id="@+id/tv_bottom_cart"
+                    android:layout_width="16dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end|bottom"
+                    android:background="@drawable/round_shape_orange"
+                    android:gravity="center"
+                    android:textColor="@color/white"
+                    android:textSize="11sp"
+                    android:textStyle="bold"
+                    android:visibility="gone"
+                    tools:text="2" />
+
+            </FrameLayout>
+
+        </FrameLayout>
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:scaleType="center"
+            android:src="@drawable/ic_heart_pressed" />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:scaleType="center"
+            android:src="@drawable/ic_button_profile_icon" />
+
+    </LinearLayout>
+
+
+</FrameLayout>
