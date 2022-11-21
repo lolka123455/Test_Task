@@ -6,7 +6,7 @@ import com.example.testtask.main_screen.viewmodels.MainViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
-val DetailScreenModule = module {
+val MainScreenModule = module {
 
     single {
         MainScreenRetrofitBuilder().provideRetrofitInstance()
