@@ -3,4 +3,26 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/nav_graph">
 
+    <fragment
+        android:id="@+id/fragment_cart"
+        android:name="com.example.testtask.cart_screen.fragments.CartScreenFragment"
+        android:label="CartFragment">
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_details"
+        android:name="com.example.testtask.detail_screen.fragments.DetailsScreenFragment"
+        android:label="DetailsFragment">
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_main"
+        android:name="com.example.testtask.main_screen.fragments.MainScreenFragment"
+        android:label="MainFragment">
+    </fragment>
+
+    <action
+        android:id="@+id/actionDetailsFragment"
+        app:destination="@id/fragment_details" />
+
 </navigation>
