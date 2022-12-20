@@ -6,14 +6,20 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.testtask.main_screen.FilterCategory
 import com.example.testtask.main_screen.R
+import com.example.testtask.main_screen.adapters.bestSeller.BestSellerDelegateAdapter
 import com.example.testtask.main_screen.adapters.delegateAdapter.CompositeAdapter
+import com.example.testtask.main_screen.adapters.hotSales.HotSalesDelegateAdapter
 import com.example.testtask.main_screen.adapters.selectCategory.CategoriesDelegateAdapter
 import com.example.testtask.main_screen.adapters.selectCategory.CategoryItemTag
 import com.example.testtask.main_screen.databinding.FragmentMainBinding
+import com.example.testtask.main_screen.network.models.BestSeller
+import com.example.testtask.main_screen.network.models.HotSale
 import com.example.testtask.main_screen.viewmodels.MainViewModel
+import com.example.testtask.navigation.AppScreens
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -26,12 +32,22 @@ class MainScreenFragment : Fragment() {
         viewModel.changeCategory(itemTag)
     }
 
+    private val bestSellerItemClickListener: (BestSeller) -> Unit = {
+        openItemDetails()
+    }
+
+    private val hotSalesItemClickListener: (HotSale) -> Unit = {
+        openItemDetails()
+    }
+
 
     private val categoriesDelegateAdapter = CategoriesDelegateAdapter(categoryItemClickListener)
 
     private val compositeAdapter by lazy {
         CompositeAdapter.Builder()
             .add(categoriesDelegateAdapter)
+            .add(HotSalesDelegateAdapter(hotSalesItemClickListener))
+            .add(BestSellerDelegateAdapter(bestSellerItemClickListener))
             .build()
     }
 
@@ -58,6 +74,10 @@ class MainScreenFragment : Fragment() {
         with(binding) {
             ivFilter.setOnClickListener { showFilter() }
         }
+    }
+
+    private fun openItemDetails() {
+        findNavController().navigate(AppScreens.DetailsScreen.Entry)
     }
 
     private fun showFilter() {

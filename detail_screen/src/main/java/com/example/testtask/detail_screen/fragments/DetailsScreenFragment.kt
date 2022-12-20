@@ -10,6 +10,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.example.testtask.detail_screen.R
@@ -17,6 +18,7 @@ import com.example.testtask.detail_screen.adapters.ProductDetailsViewPagerAdapte
 import com.example.testtask.detail_screen.databinding.FragmentDetailsBinding
 import com.example.testtask.detail_screen.network.models.ProductDetails
 import com.example.testtask.detail_screen.viewmodels.DetailsScreenViewModel
+import com.example.testtask.navigation.AppScreens
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import kotlin.math.abs
 
@@ -86,6 +88,13 @@ class DetailsScreenFragment : Fragment() {
         setColorsClickListener()
         setCapacityClickListener()
         setBackViewClickListener()
+        setCartClickListener()
+    }
+
+    private fun setCartClickListener() {
+        binding.ivBtnCart.setOnClickListener {
+            findNavController().navigate(AppScreens.CartScreen.Entry)
+        }
     }
 
     private fun setBackViewClickListener() {
