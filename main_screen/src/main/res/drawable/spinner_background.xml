@@ -14,7 +14,10 @@
                     <padding android:bottom="8dp" android:left="8dp" android:right="8dp" android:top="8dp" />
                 </shape>
             </item>
-            <item android:drawable="@drawable/ic_arrow_down" android:gravity="center|right" />
+            <item
+                android:drawable="@drawable/ic_arrow_down"
+                android:gravity="center|right">
+            </item>
         </layer-list>
     </item>
 

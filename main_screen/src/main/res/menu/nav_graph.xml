@@ -10,7 +10,7 @@
         android:title="@string/my_cart" />
 
     <item android:id="@+id/favourites"
-        android:icon="@drawable/ic_heart_bottom"
+        android:icon="@drawable/ic_bottom_favourites"
         android:title="@string/favourites" />
 
     <item android:id="@+id/profile"

@@ -18,7 +18,7 @@
 
     <fragment
         android:id="@+id/fragment_main"
-        android:name="com.example.testtask.main_screen.fragments.MainScreenFragment"
+        android:name="com.example.testtask.main_screen.presentation.fragments.main.MainFragment"
         android:label="MainFragment">
     </fragment>
 
