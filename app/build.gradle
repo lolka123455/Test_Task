@@ -45,6 +45,7 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.4'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.0'
 
+    implementation project(':state_network_connection')
     implementation project(':cart_screen')
     implementation project(':detail_screen')
     implementation project(':main_screen')
