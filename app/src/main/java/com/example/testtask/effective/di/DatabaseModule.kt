@@ -11,8 +11,15 @@ val DatabaseModule = module {
     single {
         provideMainScreenDao(get())
     }
+    single {
+        provideDetailsScreenDao(get())
+    }
+
 }
 
 fun provideMainScreenDao(database: AppDatabase) = database.mainScreenDao()
+
+fun provideDetailsScreenDao(database: AppDatabase) = database.detailsScreenDao()
+
 
 const val DATABASE_NAME = "ecommerce_database"

@@ -6,6 +6,11 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <include
+        android:id="@+id/errorStateUi"
+        layout="@layout/no_network_layout"
+        android:visibility="gone" />
+
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="48dp"
@@ -18,8 +23,8 @@
             android:layout_gravity="center"
             android:paddingHorizontal="40dp">
 
-            <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/iv_btn_back"
+            <ImageView
+                android:id="@+id/backImageView"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_gravity="start|center"
@@ -28,8 +33,8 @@
                 android:src="@drawable/ic_arrow_back"
                 app:tint="@color/white" />
 
-            <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/iv_btn_cart"
+            <ImageView
+                android:id="@+id/cartImageView"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_gravity="end|center"
@@ -43,7 +48,7 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <ScrollView
-        android:id="@+id/sv_details"
+        android:id="@+id/successStateUi"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/background"
@@ -55,7 +60,7 @@
             android:orientation="vertical">
 
             <androidx.viewpager2.widget.ViewPager2
-                android:id="@+id/vp_phone"
+                android:id="@+id/viewPager"
                 android:layout_width="match_parent"
                 android:layout_height="300dp"
                 android:orientation="horizontal"
@@ -75,8 +80,8 @@
                     android:layout_marginTop="28dp"
                     android:orientation="horizontal">
 
-                    <com.google.android.material.textview.MaterialTextView
-                        android:id="@+id/tv_title"
+                    <TextView
+                        android:id="@+id/titleTextView"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_marginEnd="16dp"
@@ -85,8 +90,8 @@
                         android:textSize="24sp"
                         tools:text="Galaxy Note 20 Ultra" />
 
-                    <com.google.android.material.imageview.ShapeableImageView
-                        android:id="@+id/iv_favourite"
+                    <ImageView
+                        android:id="@+id/favouriteImageView"
                         android:layout_width="40dp"
                         android:layout_height="40dp"
                         android:layout_gravity="start|center"
@@ -108,6 +113,7 @@
                     android:progressTint="@color/yellow"
                     android:scaleX=".5"
                     android:scaleY=".5"
+                    android:secondaryProgressTint="@android:color/transparent"
                     android:transformPivotX="0dp"
                     android:transformPivotY="0dp"
                     tools:rating="5" />
@@ -131,14 +137,14 @@
                         android:gravity="center"
                         android:orientation="vertical">
 
-                        <com.google.android.material.imageview.ShapeableImageView
+                        <ImageView
                             android:layout_width="28dp"
                             android:layout_height="28dp"
                             android:src="@drawable/ic_cpu"
                             app:tint="@color/grey" />
 
-                        <com.google.android.material.textview.MaterialTextView
-                            android:id="@+id/tv_cpu"
+                        <TextView
+                            android:id="@+id/cpuTextView"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="4dp"
@@ -155,14 +161,14 @@
                         android:gravity="center"
                         android:orientation="vertical">
 
-                        <com.google.android.material.imageview.ShapeableImageView
+                        <ImageView
                             android:layout_width="28dp"
                             android:layout_height="28dp"
                             android:src="@drawable/ic_camera"
                             app:tint="@color/grey" />
 
-                        <com.google.android.material.textview.MaterialTextView
-                            android:id="@+id/tv_camera"
+                        <TextView
+                            android:id="@+id/cameraTextView"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="4dp"
@@ -179,14 +185,14 @@
                         android:gravity="center"
                         android:orientation="vertical">
 
-                        <com.google.android.material.imageview.ShapeableImageView
+                        <ImageView
                             android:layout_width="30dp"
                             android:layout_height="30dp"
                             android:src="@drawable/ic_ram"
                             app:tint="@color/grey" />
 
-                        <com.google.android.material.textview.MaterialTextView
-                            android:id="@+id/tv_ram"
+                        <TextView
+                            android:id="@+id/ramTextView"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="4dp"
@@ -203,14 +209,14 @@
                         android:gravity="center"
                         android:orientation="vertical">
 
-                        <com.google.android.material.imageview.ShapeableImageView
+                        <ImageView
                             android:layout_width="28dp"
                             android:layout_height="28dp"
                             android:src="@drawable/ic_sd"
                             app:tint="@color/grey" />
 
-                        <com.google.android.material.textview.MaterialTextView
-                            android:id="@+id/tv_sd_card"
+                        <TextView
+                            android:id="@+id/sdTextView"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="4dp"
@@ -222,7 +228,7 @@
 
                 </LinearLayout>
 
-                <com.google.android.material.textview.MaterialTextView
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="28dp"
@@ -245,8 +251,8 @@
                         android:columnCount="2"
                         android:minWidth="140dp">
 
-                        <com.google.android.material.imageview.ShapeableImageView
-                            android:id="@+id/iv_first_choice_color"
+                        <ImageView
+                            android:id="@+id/firstColorImageView"
                             android:layout_width="40dp"
                             android:layout_height="40dp"
                             android:layout_marginEnd="16dp"
@@ -255,11 +261,20 @@
                             android:src="@drawable/ic_selected"
                             tools:backgroundTint="@color/orange" />
 
-                        <com.google.android.material.imageview.ShapeableImageView
-                            android:id="@+id/iv_second_choice_color"
+                        <ImageView
+                            android:id="@+id/secondColorImageView"
                             android:layout_width="40dp"
                             android:layout_height="40dp"
                             android:layout_marginEnd="16dp"
+                            android:background="@drawable/round_transparent_shape"
+                            android:scaleType="center"
+                            android:visibility="gone"
+                            tools:backgroundTint="@color/orange" />
+
+                        <ImageView
+                            android:id="@+id/thirdColorImageView"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
                             android:background="@drawable/round_transparent_shape"
                             android:scaleType="center"
                             android:visibility="gone"
@@ -275,8 +290,8 @@
                         android:layout_weight="1"
                         android:columnCount="2">
 
-                        <com.google.android.material.textview.MaterialTextView
-                            android:id="@+id/tv_first_capacity"
+                        <TextView
+                            android:id="@+id/firstCapacity"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:layout_gravity="center"
@@ -290,8 +305,8 @@
                             android:textStyle="bold"
                             tools:text="128 GB" />
 
-                        <com.google.android.material.textview.MaterialTextView
-                            android:id="@+id/tv_second_capacity"
+                        <TextView
+                            android:id="@+id/secondCapacity"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:layout_gravity="center"
@@ -305,7 +320,7 @@
                             android:visibility="gone"
                             tools:text="256 GB" />
 
-                        <com.google.android.material.textview.MaterialTextView
+                        <TextView
                             android:id="@+id/thirdCapacity"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
@@ -334,7 +349,7 @@
                     android:background="@drawable/rounded_orange_shape"
                     android:paddingVertical="12dp">
 
-                    <com.google.android.material.textview.MaterialTextView
+                    <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="40dp"
@@ -343,8 +358,8 @@
                         android:textSize="20sp"
                         android:textStyle="bold" />
 
-                    <com.google.android.material.textview.MaterialTextView
-                        android:id="@+id/tv_price"
+                    <TextView
+                        android:id="@+id/priceTextView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="end"

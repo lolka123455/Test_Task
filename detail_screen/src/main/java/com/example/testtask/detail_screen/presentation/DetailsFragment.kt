@@ -1,4 +1,4 @@
-package com.example.testtask.detail_screen.fragments
+package com.example.testtask.detail_screen.presentation
 
 import android.content.res.ColorStateList
 import android.graphics.Color
@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.content.ContextCompat
@@ -14,20 +15,21 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.example.testtask.detail_screen.R
-import com.example.testtask.detail_screen.adapters.ProductDetailsViewPagerAdapter
 import com.example.testtask.detail_screen.databinding.FragmentDetailsBinding
-import com.example.testtask.detail_screen.network.models.ProductDetails
-import com.example.testtask.detail_screen.viewmodels.DetailsScreenViewModel
+import com.example.testtask.detail_screen.domain.entities.ProductDetails
+import com.example.testtask.detail_screen.presentation.viewmodel.DetailsViewModel
+import com.example.testtask.detail_screen.presentation.viewpager.ProductImagesViewPagerAdapter
 import com.example.testtask.navigation.AppScreens
+import com.example.testtask.state_network_connection.UiState
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import kotlin.math.abs
 
-class DetailsScreenFragment : Fragment() {
+class DetailsFragment : Fragment() {
 
     private lateinit var binding: FragmentDetailsBinding
-    private val viewModel by viewModel<DetailsScreenViewModel>()
+    private val viewModel by viewModel<DetailsViewModel>()
 
-    private val adapter = ProductDetailsViewPagerAdapter()
+    private val adapter = ProductImagesViewPagerAdapter()
 
     private var colorImageViews: List<ImageView> = emptyList()
     private var capacityTextViews: List<TextView> = emptyList()
@@ -52,8 +54,8 @@ class DetailsScreenFragment : Fragment() {
     }
 
     private fun setupViewPager() {
-        with(binding.vpPhone) {
-            adapter = this@DetailsScreenFragment.adapter
+        with(binding.viewPager) {
+            adapter = this@DetailsFragment.adapter
             setupTransformer()
             offscreenPageLimit = 3
             clipToPadding = false
@@ -73,13 +75,13 @@ class DetailsScreenFragment : Fragment() {
     }
 
     private fun setupColorAndCapacityViews() {
-        chosenColorImageView = binding.ivFirstChoiceColor
-        chosenCapacityTextView = binding.tvFirstCapacity
+        chosenColorImageView = binding.firstColorImageView
+        chosenCapacityTextView = binding.firstCapacity
         colorImageViews = with(binding) {
-            listOf(ivFirstChoiceColor, ivSecondChoiceColor)
+            listOf(firstColorImageView, secondColorImageView, thirdColorImageView)
         }
         capacityTextViews = with(binding) {
-            listOf(tvFirstCapacity, tvSecondCapacity, thirdCapacity)
+            listOf(firstCapacity, secondCapacity, thirdCapacity)
         }
         setOnClickListeners()
     }
@@ -92,13 +94,13 @@ class DetailsScreenFragment : Fragment() {
     }
 
     private fun setCartClickListener() {
-        binding.ivBtnCart.setOnClickListener {
+        binding.cartImageView.setOnClickListener {
             findNavController().navigate(AppScreens.CartScreen.Entry)
         }
     }
 
     private fun setBackViewClickListener() {
-        binding.ivBtnBack.setOnClickListener { requireActivity().onBackPressed() }
+        binding.backImageView.setOnClickListener { requireActivity().onBackPressed() }
     }
 
     private fun setCapacityClickListener() {
@@ -149,19 +151,22 @@ class DetailsScreenFragment : Fragment() {
             productDetails.observe(viewLifecycleOwner) {
                 fillDetailsUi(it)
             }
+            uiState.observe(viewLifecycleOwner) {
+                updateUiState(it)
+            }
         }
     }
 
     private fun fillDetailsUi(details: ProductDetails) {
         with(binding) {
-            tvTitle.text = details.title
+            titleTextView.text = details.title
             ratingBar.rating = details.rating.toFloat()
-            tvCpu.text = details.cpu
-            tvCamera.text = details.camera
-            tvRam.text = details.ram
-            tvSdCard.text = details.sd
-            tvPrice.text = details.price.toPriceFormat()
-            ivFavourite.setImageResource(
+            cpuTextView.text = details.cpu
+            cameraTextView.text = details.camera
+            ramTextView.text = details.ram
+            sdTextView.text = details.sd
+            priceTextView.text = details.price.toPriceFormat()
+            favouriteImageView.setImageResource(
                 if (details.isFavorites) {
                     R.drawable.ic_favorite
                 } else {
@@ -192,6 +197,33 @@ class DetailsScreenFragment : Fragment() {
         }
     }
 
+    private fun updateUiState(state: UiState) {
+        when (state) {
+            is UiState.Success -> with(binding) {
+                successStateUi.visibility = View.VISIBLE
+//                errorStateUi.visibility = View.GONE
+            }
+            is UiState.Error -> with(binding) {
+                successStateUi.visibility = View.GONE
+//                errorStateUi.visibility = View.VISIBLE
+                setTryAgainButtonClickListener()
+            }
+            is UiState.Loading -> {}
+        }
+    }
+
+    private fun setTryAgainButtonClickListener() {
+        view?.let {
+            it.findViewById<FrameLayout>(
+                com.example.testtask.state_network_connection.R.id.tryAgainFrame
+            )?.let { tryAgainTextView ->
+                tryAgainTextView.setOnClickListener {
+                    viewModel.retryNetworkCall()
+                }
+            }
+        }
+    }
+
     private fun View.makeVisible() {
         visibility = View.VISIBLE
     }
@@ -200,5 +232,4 @@ class DetailsScreenFragment : Fragment() {
         if (this >= 1000) {
             "${"$%.${3}f".format(this / 1000.0)}.00"
         } else "$$this.00"
-
 }

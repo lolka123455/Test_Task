@@ -1,4 +1,4 @@
-package com.example.testtask.detail_screen.network.models
+package com.example.testtask.detail_screen.domain.entities
 
 data class ProductDetails(
     val cpu: String,
