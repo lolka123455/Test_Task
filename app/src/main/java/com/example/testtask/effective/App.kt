@@ -2,7 +2,7 @@ package com.example.testtask.effective
 
 import android.app.Application
 import com.example.testtask.cart_screen.di.CartScreenModule
-import com.example.testtask.detail_screen.di.DetailScreenModule
+import com.example.testtask.detail_screen.di.DetailsScreenModule
 import com.example.testtask.effective.di.DatabaseModule
 import com.example.testtask.effective.di.NetworkModule
 import com.example.testtask.main_screen.di.MainScreenModule
@@ -23,7 +23,7 @@ class App : Application() {
             modules(
                 CartScreenModule,
                 MainScreenModule,
-                DetailScreenModule,
+                DetailsScreenModule,
                 NetworkModule,
                 DatabaseModule
             )

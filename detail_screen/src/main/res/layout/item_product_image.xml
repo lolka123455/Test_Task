@@ -7,7 +7,7 @@
     app:cardCornerRadius="24dp"
     app:cardElevation="20dp">
 
-    <com.google.android.material.imageview.ShapeableImageView
+    <ImageView
         android:id="@+id/productImageView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

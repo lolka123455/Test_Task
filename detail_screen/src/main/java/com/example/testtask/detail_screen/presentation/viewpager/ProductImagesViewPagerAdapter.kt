@@ -1,4 +1,4 @@
-package com.example.testtask.detail_screen.adapters
+package com.example.testtask.detail_screen.presentation.viewpager
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -6,10 +6,10 @@ import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.testtask.detail_screen.databinding.ProductDetailItemBinding
+import com.example.testtask.detail_screen.databinding.ItemProductImageBinding
 
-class ProductDetailsViewPagerAdapter() :
-    RecyclerView.Adapter<ProductDetailsViewPagerAdapter.HotSaleViewHolder>() {
+class ProductImagesViewPagerAdapter() :
+    RecyclerView.Adapter<ProductImagesViewPagerAdapter.HotSaleViewHolder>() {
 
     var currentList: List<String>
         get() = differ.currentList
@@ -28,7 +28,7 @@ class ProductDetailsViewPagerAdapter() :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HotSaleViewHolder {
         val inflater = LayoutInflater.from(parent.context)
-        val binding = ProductDetailItemBinding.inflate(inflater, parent, false)
+        val binding = ItemProductImageBinding.inflate(inflater, parent, false)
         return HotSaleViewHolder(binding)
     }
 
@@ -38,7 +38,7 @@ class ProductDetailsViewPagerAdapter() :
 
     override fun getItemCount(): Int = differ.currentList.size
 
-    inner class HotSaleViewHolder(private val binding: ProductDetailItemBinding) :
+    inner class HotSaleViewHolder(private val binding: ItemProductImageBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         val image = binding.productImageView
