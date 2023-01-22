@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<HorizontalScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_marginTop="@dimen/margin_24"
+    android:scrollbars="none"
+    android:layout_height="wrap_content"
+    android:background="@android:color/transparent">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:gravity="center"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/itemPhoneImageView"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_marginHorizontal="@dimen/margin_12"
+                android:scaleType="center"
+                android:src="@drawable/ic_category_phone" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_marginTop="@dimen/margin_4"
+                android:layout_height="wrap_content"
+                android:text="@string/phone" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:gravity="center"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/itemComputerImageView"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_marginHorizontal="@dimen/margin_12"
+                android:scaleType="center"
+                android:src="@drawable/ic_category_computer" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_marginTop="@dimen/margin_4"
+                android:layout_height="wrap_content"
+                android:text="@string/computer" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:gravity="center"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/itemHealthImageView"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_marginHorizontal="@dimen/margin_12"
+                android:scaleType="center"
+                android:src="@drawable/ic_category_health" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_marginTop="@dimen/margin_4"
+                android:layout_height="wrap_content"
+                android:text="@string/health" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:gravity="center"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/itemBooksImageView"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_marginHorizontal="@dimen/margin_12"
+                android:scaleType="center"
+                android:src="@drawable/ic_category_books" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_marginTop="@dimen/margin_4"
+                android:layout_height="wrap_content"
+                android:text="@string/books" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:gravity="center"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/itemUnknownImageView"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_marginHorizontal="@dimen/margin_12"
+                android:scaleType="center"
+                android:src="@drawable/ic_unknown_image" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_marginTop="@dimen/margin_4"
+                android:layout_height="wrap_content"
+                android:text="@string/unknown" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</HorizontalScrollView>
