@@ -1,11 +1,11 @@
 package com.example.testtask.main_screen.di
 
-import com.example.testtask.main_screen.data.remote.MainScreenService
-import com.example.testtask.main_screen.data.repository.MainScreenRepositoryImpl
-import com.example.testtask.main_screen.domain.repository.MainScreenRepository
-import com.example.testtask.main_screen.domain.usecases.GetCartUseCase
-import com.example.testtask.main_screen.domain.usecases.GetMainPageUseCase
-import com.example.testtask.main_screen.presentation.fragments.main.viewmodel.MainViewModel
+import com.example.testtask.main_screen.api.MainScreenService
+import com.example.testtask.main_screen.repository.MainScreenRepositoryImpl
+import com.example.testtask.main_screen.repository.MainScreenRepository
+import com.example.testtask.main_screen.usecases.GetCartUseCase
+import com.example.testtask.main_screen.usecases.GetMainPageUseCase
+import com.example.testtask.main_screen.viewmodel.MainViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 import retrofit2.Retrofit
