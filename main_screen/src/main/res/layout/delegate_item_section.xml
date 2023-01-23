@@ -7,16 +7,17 @@
     android:layout_marginEnd="@dimen/margin_16"
     android:orientation="horizontal">
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/sectionTitleTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="start|center"
+        android:textColor="@color/dark_grey"
         android:textSize="25sp"
         android:textStyle="bold"
         tools:text="@string/select_category" />
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/moreTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

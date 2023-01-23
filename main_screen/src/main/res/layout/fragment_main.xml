@@ -31,23 +31,24 @@
                     android:gravity="center"
                     android:orientation="horizontal">
 
-                    <ImageView
+                    <com.google.android.material.imageview.ShapeableImageView
                         android:layout_width="@dimen/small_icon_size"
                         android:layout_height="@dimen/small_icon_size"
                         android:layout_marginEnd="@dimen/margin_8"
                         android:scaleType="center"
                         android:src="@drawable/ic_geo" />
 
-                    <TextView
+                    <com.google.android.material.textview.MaterialTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:ellipsize="none"
                         android:maxEms="16"
                         android:singleLine="true"
                         android:text="@string/geo_text"
+                        android:textColor="@color/dark_grey"
                         android:textSize="15sp" />
 
-                    <ImageView
+                    <com.google.android.material.imageview.ShapeableImageView
                         android:layout_width="@dimen/small_icon_size"
                         android:layout_height="@dimen/small_icon_size"
                         android:layout_marginStart="@dimen/margin_8"
@@ -57,7 +58,7 @@
                 </LinearLayout>
 
 
-                <ImageView
+                <com.google.android.material.imageview.ShapeableImageView
                     android:id="@+id/filterImageView"
                     android:layout_width="@dimen/small_icon_size"
                     android:layout_height="@dimen/small_icon_size"
@@ -88,7 +89,7 @@
             android:orientation="horizontal"
             android:paddingHorizontal="64dp">
 
-            <TextView
+            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/bottomNavExplorerTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -110,7 +111,7 @@
                     android:layout_height="32dp"
                     android:layout_gravity="center">
 
-                    <ImageView
+                    <com.google.android.material.imageview.ShapeableImageView
                         android:id="@+id/bottomCartImageView"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -118,7 +119,7 @@
                         android:scaleType="center"
                         android:src="@drawable/ic_bottom_cart_icon" />
 
-                    <TextView
+                    <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/bottomCartCountTextView"
                         android:layout_width="16dp"
                         android:layout_height="wrap_content"
@@ -135,14 +136,14 @@
 
             </FrameLayout>
 
-            <ImageView
+            <com.google.android.material.imageview.ShapeableImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:scaleType="center"
                 android:src="@drawable/ic_bottom_favourites" />
 
-            <ImageView
+            <com.google.android.material.imageview.ShapeableImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
