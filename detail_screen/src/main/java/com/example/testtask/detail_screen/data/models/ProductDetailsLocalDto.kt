@@ -1,9 +1,9 @@
-package com.example.testtask.detail_screen.data.local.models
+package com.example.testtask.detail_screen.data.models
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.example.testtask.detail_screen.data.local.models.ProductDetailsLocalDto.Companion.TABLE_NAME
-import com.example.testtask.detail_screen.domain.entities.ProductDetails
+import com.example.testtask.detail_screen.data.models.ProductDetailsLocalDto.Companion.TABLE_NAME
+import com.example.testtask.detail_screen.entities.ProductDetails
 
 @Entity(tableName =TABLE_NAME)
 data class ProductDetailsLocalDto(

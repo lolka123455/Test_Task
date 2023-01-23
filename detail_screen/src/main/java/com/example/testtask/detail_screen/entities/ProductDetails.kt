@@ -1,4 +1,4 @@
-package com.example.testtask.detail_screen.domain.entities
+package com.example.testtask.detail_screen.entities
 
 data class ProductDetails(
     val cpu: String,

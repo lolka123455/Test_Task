@@ -1,11 +1,10 @@
-package com.example.testtask.detail_screen.data.repository
+package com.example.testtask.detail_screen.repository
 
-import com.example.testtask.detail_screen.data.local.dao.DetailsScreenDao
-import com.example.testtask.detail_screen.data.local.models.ProductDetailsLocalDto
-import com.example.testtask.detail_screen.data.remote.DetailsScreenService
+import com.example.testtask.detail_screen.data.dao.DetailsScreenDao
+import com.example.testtask.detail_screen.data.models.ProductDetailsLocalDto
+import com.example.testtask.detail_screen.api.DetailsScreenService
 import com.example.testtask.state_network_connection.FetchResult
-import com.example.testtask.detail_screen.domain.entities.ProductDetails
-import com.example.testtask.detail_screen.domain.repository.DetailsScreenRepository
+import com.example.testtask.detail_screen.entities.ProductDetails
 import java.lang.Exception
 
 class DetailsScreenRepositoryImpl(

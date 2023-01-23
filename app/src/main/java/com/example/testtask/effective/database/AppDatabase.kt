@@ -6,9 +6,9 @@ import androidx.room.TypeConverters
 import com.example.testtask.cart_screen.data.converters.BasketConverter
 import com.example.testtask.cart_screen.data.dao.CartScreenDao
 import com.example.testtask.cart_screen.data.models.CartLocalDto
-import com.example.testtask.detail_screen.data.local.converters.ProductDetailsConverter
-import com.example.testtask.detail_screen.data.local.dao.DetailsScreenDao
-import com.example.testtask.detail_screen.data.local.models.ProductDetailsLocalDto
+import com.example.testtask.detail_screen.data.converters.ProductDetailsConverter
+import com.example.testtask.detail_screen.data.dao.DetailsScreenDao
+import com.example.testtask.detail_screen.data.models.ProductDetailsLocalDto
 import com.example.testtask.main_screen.data.local.converters.BestSellersConverter
 import com.example.testtask.main_screen.data.local.converters.HotSalesConverter
 import com.example.testtask.main_screen.data.local.dao.MainScreenDao

@@ -1,6 +1,6 @@
-package com.example.testtask.detail_screen.data.remote
+package com.example.testtask.detail_screen.api
 
-import com.example.testtask.detail_screen.data.remote.models.ProductDetailsNetworkDto
+import com.example.testtask.detail_screen.api.models.ProductDetailsNetworkDto
 import retrofit2.http.GET
 
 interface DetailsScreenService {

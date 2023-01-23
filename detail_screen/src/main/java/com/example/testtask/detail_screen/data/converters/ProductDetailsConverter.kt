@@ -1,4 +1,4 @@
-package com.example.testtask.detail_screen.data.local.converters
+package com.example.testtask.detail_screen.data.converters
 
 import androidx.room.TypeConverter
 import com.google.gson.Gson

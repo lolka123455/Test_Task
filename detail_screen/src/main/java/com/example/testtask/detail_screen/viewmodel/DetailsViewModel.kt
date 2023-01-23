@@ -1,12 +1,12 @@
-package com.example.testtask.detail_screen.presentation.viewmodel
+package com.example.testtask.detail_screen.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.testtask.state_network_connection.UiState
-import com.example.testtask.detail_screen.domain.entities.ProductDetails
-import com.example.testtask.detail_screen.domain.usecases.GetProductDetailsUseCase
+import com.example.testtask.detail_screen.entities.ProductDetails
+import com.example.testtask.detail_screen.usecases.GetProductDetailsUseCase
 import com.example.testtask.state_network_connection.FetchResult
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers

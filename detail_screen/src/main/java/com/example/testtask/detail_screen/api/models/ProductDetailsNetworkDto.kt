@@ -1,6 +1,6 @@
-package com.example.testtask.detail_screen.data.remote.models
+package com.example.testtask.detail_screen.api.models
 
-import com.example.testtask.detail_screen.domain.entities.ProductDetails
+import com.example.testtask.detail_screen.entities.ProductDetails
 
 data class ProductDetailsNetworkDto(
     val CPU: String,

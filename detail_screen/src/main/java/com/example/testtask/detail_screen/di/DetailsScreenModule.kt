@@ -1,10 +1,10 @@
 package com.example.testtask.detail_screen.di
 
-import com.example.testtask.detail_screen.data.remote.DetailsScreenService
-import com.example.testtask.detail_screen.data.repository.DetailsScreenRepositoryImpl
-import com.example.testtask.detail_screen.domain.repository.DetailsScreenRepository
-import com.example.testtask.detail_screen.domain.usecases.GetProductDetailsUseCase
-import com.example.testtask.detail_screen.presentation.viewmodel.DetailsViewModel
+import com.example.testtask.detail_screen.api.DetailsScreenService
+import com.example.testtask.detail_screen.repository.DetailsScreenRepositoryImpl
+import com.example.testtask.detail_screen.repository.DetailsScreenRepository
+import com.example.testtask.detail_screen.usecases.GetProductDetailsUseCase
+import com.example.testtask.detail_screen.viewmodel.DetailsViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 import retrofit2.Retrofit
