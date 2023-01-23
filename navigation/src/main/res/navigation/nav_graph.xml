@@ -12,7 +12,7 @@
 
     <fragment
         android:id="@+id/fragment_details"
-        android:name="com.example.testtask.detail_screen.fragments.DetailsFragment"
+        android:name="com.example.testtask.detail_screen.fragments.DetailsScreenFragment"
         android:label="DetailsFragment">
     </fragment>
 

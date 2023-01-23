@@ -24,7 +24,7 @@ import com.example.testtask.state_network_connection.UiState
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import kotlin.math.abs
 
-class DetailsFragment : Fragment() {
+class DetailsScreenFragment : Fragment() {
 
     private lateinit var binding: FragmentDetailsBinding
     private val viewModel by viewModel<DetailsViewModel>()
@@ -55,7 +55,7 @@ class DetailsFragment : Fragment() {
 
     private fun setupViewPager() {
         with(binding.viewPager) {
-            adapter = this@DetailsFragment.adapter
+            adapter = this@DetailsScreenFragment.adapter
             setupTransformer()
             offscreenPageLimit = 3
             clipToPadding = false
