@@ -14,19 +14,21 @@ import org.koin.core.logger.Level
 
 class App : Application() {
 
+    private val modules = listOf(
+        CartScreenModule,
+        MainScreenModule,
+        DetailsScreenModule,
+        NetworkModule,
+        DatabaseModule
+    )
+
     override fun onCreate() {
         super.onCreate()
 
         startKoin {
             androidLogger(Level.DEBUG)
             androidContext(this@App)
-            modules(
-                CartScreenModule,
-                MainScreenModule,
-                DetailsScreenModule,
-                NetworkModule,
-                DatabaseModule
-            )
+            modules(modules)
         }
     }
 }
