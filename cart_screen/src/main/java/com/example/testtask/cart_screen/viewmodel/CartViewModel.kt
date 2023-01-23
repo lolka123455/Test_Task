@@ -1,11 +1,11 @@
-package com.example.testtask.cart_screen.presentation.viewmodel
+package com.example.testtask.cart_screen.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.testtask.cart_screen.domain.entities.Basket
-import com.example.testtask.cart_screen.domain.usecases.GetCartUseCase
+import com.example.testtask.cart_screen.entities.Basket
+import com.example.testtask.cart_screen.usecases.GetCartUseCase
 import com.example.testtask.state_network_connection.FetchResult
 import com.example.testtask.state_network_connection.UiState
 import kotlinx.coroutines.CoroutineDispatcher

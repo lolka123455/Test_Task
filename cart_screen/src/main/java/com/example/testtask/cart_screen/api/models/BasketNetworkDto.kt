@@ -1,6 +1,6 @@
-package com.example.testtask.cart_screen.data.remote.models
+package com.example.testtask.cart_screen.api.models
 
-import com.example.testtask.cart_screen.domain.entities.Basket
+import com.example.testtask.cart_screen.entities.Basket
 
 data class BasketNetworkDto(
     val id: Int,

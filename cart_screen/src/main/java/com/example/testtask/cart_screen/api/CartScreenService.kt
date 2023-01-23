@@ -1,6 +1,6 @@
-package com.example.testtask.cart_screen.data.remote
+package com.example.testtask.cart_screen.api
 
-import com.example.testtask.cart_screen.data.remote.models.CartNetworkDto
+import com.example.testtask.cart_screen.api.models.CartNetworkDto
 import retrofit2.http.GET
 
 interface CartScreenService {

@@ -1,4 +1,4 @@
-package com.example.testtask.cart_screen.presentation
+package com.example.testtask.cart_screen.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,12 +8,12 @@ import android.widget.FrameLayout
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.testtask.cart_screen.databinding.FragmentCartBinding
-import com.example.testtask.cart_screen.presentation.recyclerview.CartItemsAdapter
-import com.example.testtask.cart_screen.presentation.viewmodel.CartViewModel
+import com.example.testtask.cart_screen.adapters.CartItemsAdapter
+import com.example.testtask.cart_screen.viewmodel.CartViewModel
 import com.example.testtask.state_network_connection.UiState
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class CartFragment : Fragment() {
+class CartScreenFragment : Fragment() {
 
     private lateinit var binding: FragmentCartBinding
     private val viewModel: CartViewModel by viewModel<CartViewModel>()
@@ -88,7 +88,7 @@ class CartFragment : Fragment() {
 
     private fun setupRecyclerView() {
         with(binding.recyclerView) {
-            adapter = this@CartFragment.adapter
+            adapter = this@CartScreenFragment.adapter
             layoutManager = LinearLayoutManager(requireContext())
         }
     }

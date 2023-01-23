@@ -1,9 +1,9 @@
-package com.example.testtask.cart_screen.data.local.models
+package com.example.testtask.cart_screen.data.models
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.example.testtask.cart_screen.data.local.models.CartLocalDto.Companion.TABLE_NAME
-import com.example.testtask.cart_screen.domain.entities.Cart
+import com.example.testtask.cart_screen.data.models.CartLocalDto.Companion.TABLE_NAME
+import com.example.testtask.cart_screen.entities.Cart
 
 @Entity(tableName = TABLE_NAME)
 data class CartLocalDto(

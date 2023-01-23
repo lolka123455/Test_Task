@@ -1,7 +1,7 @@
-package com.example.testtask.cart_screen.data.local.converters
+package com.example.testtask.cart_screen.data.converters
 
 import androidx.room.TypeConverter
-import com.example.testtask.cart_screen.data.local.models.BasketLocalDto
+import com.example.testtask.cart_screen.data.models.BasketLocalDto
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 

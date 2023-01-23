@@ -3,9 +3,9 @@ package com.example.testtask.effective.database
 import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
-import com.example.testtask.cart_screen.data.local.converters.BasketConverter
-import com.example.testtask.cart_screen.data.local.dao.CartScreenDao
-import com.example.testtask.cart_screen.data.local.models.CartLocalDto
+import com.example.testtask.cart_screen.data.converters.BasketConverter
+import com.example.testtask.cart_screen.data.dao.CartScreenDao
+import com.example.testtask.cart_screen.data.models.CartLocalDto
 import com.example.testtask.detail_screen.data.local.converters.ProductDetailsConverter
 import com.example.testtask.detail_screen.data.local.dao.DetailsScreenDao
 import com.example.testtask.detail_screen.data.local.models.ProductDetailsLocalDto

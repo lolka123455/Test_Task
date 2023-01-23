@@ -1,4 +1,4 @@
-package com.example.testtask.cart_screen.presentation.recyclerview
+package com.example.testtask.cart_screen.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.testtask.cart_screen.databinding.ItemCartItemLayoutBinding
-import com.example.testtask.cart_screen.domain.entities.Basket
+import com.example.testtask.cart_screen.entities.Basket
 
 class CartItemsAdapter : RecyclerView.Adapter<CartItemsAdapter.CartItemViewHolder>() {
 

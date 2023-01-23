@@ -1,4 +1,4 @@
-package com.example.testtask.cart_screen.domain.entities
+package com.example.testtask.cart_screen.entities
 
 data class Cart(
     val basket: List<Basket>,

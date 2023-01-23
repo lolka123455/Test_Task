@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/fragment_cart"
-        android:name="com.example.testtask.cart_screen.presentation.CartFragment"
+        android:name="com.example.testtask.cart_screen.fragments.CartScreenFragment"
         android:label="CartFragment">
     </fragment>
 
