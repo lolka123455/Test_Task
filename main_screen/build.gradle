@@ -38,18 +38,18 @@ dependencies {
     implementation project(":navigation")
 
     implementation 'androidx.core:core-ktx:1.9.0'
-    implementation 'androidx.appcompat:appcompat:1.5.1'
+    implementation 'androidx.appcompat:appcompat:1.6.0'
     implementation 'com.google.android.material:material:1.7.0'
     testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.4'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.0'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 
     def nav_version = "2.4.2"
 
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
     implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
 
-    def glide_version = "4.13.0"
+    def glide_version = "4.14.2"
 
     implementation "com.github.bumptech.glide:glide:$glide_version"
 
@@ -59,27 +59,28 @@ dependencies {
     implementation "io.insert-koin:koin-android:$koin_version"
 
     def retrofit_version = "2.9.0"
-    def interceptor_version = "4.10.0"
 
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
     implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
+
+    def interceptor_version = "5.0.0-alpha.2"
+
     implementation "com.squareup.okhttp3:logging-interceptor:$interceptor_version"
 
-    def coroutines_version = "1.6.4"
-
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_version"
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_version"
-
-    implementation 'com.makeramen:roundedimageview:2.3.0'
-
-    def lifecycle_version = "2.5.1"
+    def lifecycle_version = "2.6.0-alpha04"
 
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version"
 
-    def room_version = "2.4.3"
+    def roundedimageview = "2.3.0"
+
+    implementation "com.makeramen:roundedimageview:$roundedimageview"
+
+    def room_version = "2.5.0"
+
     implementation "androidx.room:room-runtime:$room_version"
     kapt "androidx.room:room-compiler:$room_version"
 
-    def gson_version = "2.9.0"
+    def gson_version = "2.10"
+
     implementation "com.google.code.gson:gson:$gson_version"
 }
