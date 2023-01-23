@@ -1,4 +1,4 @@
-package com.example.testtask.cart_screen.network.models
+package com.example.testtask.cart_screen.domain.entities
 
 data class Basket(
     val id: Int,

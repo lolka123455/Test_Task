@@ -1,6 +1,6 @@
-package com.example.testtask.cart_screen.network.models
+package com.example.testtask.cart_screen.domain.entities
 
-data class Checkout (
+data class Cart(
     val basket: List<Basket>,
     val delivery: String,
     val id: String,
