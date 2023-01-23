@@ -60,7 +60,7 @@
             android:orientation="vertical">
 
             <androidx.viewpager2.widget.ViewPager2
-                android:id="@+iFixed tablayout display bug d/viewPager"
+                android:id="@+id/viewPager"
                 android:layout_width="match_parent"
                 android:layout_height="300dp"
                 android:orientation="horizontal"
