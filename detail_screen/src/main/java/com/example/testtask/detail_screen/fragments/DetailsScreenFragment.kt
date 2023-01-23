@@ -78,10 +78,10 @@ class DetailsScreenFragment : Fragment() {
         chosenColorImageView = binding.firstColorImageView
         chosenCapacityTextView = binding.firstCapacity
         colorImageViews = with(binding) {
-            listOf(firstColorImageView, secondColorImageView, thirdColorImageView)
+            listOf(firstColorImageView, secondColorImageView)
         }
         capacityTextViews = with(binding) {
-            listOf(firstCapacity, secondCapacity, thirdCapacity)
+            listOf(firstCapacity, secondCapacity)
         }
         setOnClickListeners()
     }
