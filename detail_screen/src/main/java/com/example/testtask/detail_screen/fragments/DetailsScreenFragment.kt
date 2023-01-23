@@ -95,7 +95,7 @@ class DetailsScreenFragment : Fragment() {
 
     private fun setCartClickListener() {
         binding.cartImageView.setOnClickListener {
-            findNavController().navigate(AppScreens.CartScreen.Entry)
+            findNavController().navigate(AppScreens.CartScreen)
         }
     }
 
