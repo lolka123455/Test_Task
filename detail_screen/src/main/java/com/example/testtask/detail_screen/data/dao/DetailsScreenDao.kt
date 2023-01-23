@@ -1,10 +1,10 @@
-package com.example.testtask.detail_screen.data.local.dao
+package com.example.testtask.detail_screen.data.dao
 
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.example.testtask.detail_screen.data.local.models.ProductDetailsLocalDto
+import com.example.testtask.detail_screen.data.models.ProductDetailsLocalDto
 
 @Dao
 interface DetailsScreenDao {

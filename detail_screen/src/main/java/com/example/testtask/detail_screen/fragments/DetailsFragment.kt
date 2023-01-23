@@ -1,4 +1,4 @@
-package com.example.testtask.detail_screen.presentation
+package com.example.testtask.detail_screen.fragments
 
 import android.content.res.ColorStateList
 import android.graphics.Color
@@ -16,9 +16,9 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.example.testtask.detail_screen.R
 import com.example.testtask.detail_screen.databinding.FragmentDetailsBinding
-import com.example.testtask.detail_screen.domain.entities.ProductDetails
-import com.example.testtask.detail_screen.presentation.viewmodel.DetailsViewModel
-import com.example.testtask.detail_screen.presentation.viewpager.ProductImagesViewPagerAdapter
+import com.example.testtask.detail_screen.entities.ProductDetails
+import com.example.testtask.detail_screen.viewmodel.DetailsViewModel
+import com.example.testtask.detail_screen.adapters.ProductImagesViewPagerAdapter
 import com.example.testtask.navigation.AppScreens
 import com.example.testtask.state_network_connection.UiState
 import org.koin.androidx.viewmodel.ext.android.viewModel

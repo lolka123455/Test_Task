@@ -1,4 +1,4 @@
-package com.example.testtask.detail_screen.presentation.viewpager
+package com.example.testtask.detail_screen.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
