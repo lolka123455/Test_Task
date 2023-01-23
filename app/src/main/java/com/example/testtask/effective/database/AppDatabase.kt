@@ -3,6 +3,9 @@ package com.example.testtask.effective.database
 import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
+import com.example.testtask.cart_screen.data.local.converters.BasketConverter
+import com.example.testtask.cart_screen.data.local.dao.CartScreenDao
+import com.example.testtask.cart_screen.data.local.models.CartLocalDto
 import com.example.testtask.detail_screen.data.local.converters.ProductDetailsConverter
 import com.example.testtask.detail_screen.data.local.dao.DetailsScreenDao
 import com.example.testtask.detail_screen.data.local.models.ProductDetailsLocalDto
@@ -14,17 +17,20 @@ import com.example.testtask.main_screen.data.local.models.main_page.MainPageLoca
 
 
 @Database(
-    entities = [MainPageLocalDto::class, ProductDetailsLocalDto::class, CartMainScreenLocalDto::class],
+    entities = [MainPageLocalDto::class, ProductDetailsLocalDto::class, CartMainScreenLocalDto::class, CartLocalDto::class],
     version = 1
 )
 @TypeConverters(
     BestSellersConverter::class,
     HotSalesConverter::class,
-    ProductDetailsConverter::class
+    ProductDetailsConverter::class,
+    BasketConverter::class
 )
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun mainScreenDao(): MainScreenDao
 
     abstract fun detailsScreenDao(): DetailsScreenDao
+
+    abstract fun cartScreenDao(): CartScreenDao
 }

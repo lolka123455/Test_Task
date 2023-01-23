@@ -2,96 +2,96 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/ll_cart_item"
+    android:id="@+id/cartItem"
     android:layout_width="match_parent"
+    android:paddingHorizontal="32dp"
+    android:paddingVertical="20dp"
     android:layout_height="wrap_content"
     android:background="@android:color/transparent"
     android:orientation="horizontal"
-    android:paddingHorizontal="32dp"
-    android:paddingVertical="20dp"
     tools:background="@color/dark_blue">
 
-    <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/iv_cover_item"
+    <com.makeramen.roundedimageview.RoundedImageView
+        android:id="@+id/itemImageView"
         android:layout_width="90dp"
         android:layout_height="90dp"
-        app:shapeAppearanceOverlay="@style/customRoundedImageView"
-        tools:src="@color/white" />
+        app:riv_corner_radius="10dp"
+        tools:src="@color/black" />
 
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_weight="1"
         android:layout_gravity="center"
         android:layout_marginStart="12dp"
-        android:layout_weight="1"
         android:orientation="vertical">
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/tv_title_item"
+        <TextView
+            android:id="@+id/titleTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textStyle="bold"
             android:lineSpacingExtra="2dp"
             android:textColor="@color/white"
             android:textSize="20sp"
-            android:textStyle="bold"
             tools:text="Galaxy Note 20 Ultra" />
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/tv_price_item"
+        <TextView
+            android:id="@+id/priceTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:textColor="@color/orange"
-            android:textSize="20sp"
             android:textStyle="bold"
+            android:textSize="20sp"
             tools:text="$3000.00" />
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginStart="4dp"
+        android:layout_height="wrap_content"
         android:background="@drawable/rounded_dark_grey_shape"
+        android:layout_marginStart="4dp"
         android:orientation="vertical">
 
-        <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/iv_btn_del_count"
+        <ImageView
+            android:id="@+id/decrementImageView"
             android:layout_width="24dp"
             android:layout_height="24dp"
-            android:scaleType="center"
             android:src="@drawable/ic_minus"
+            android:scaleType="center"
             app:tint="@color/white" />
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/tv_total_count"
+        <TextView
+            android:id="@+id/itemCountTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:textColor="@color/white"
             android:textSize="20sp"
             android:textStyle="bold"
-            tools:text="2" />
+            tools:text="2"
+            android:layout_gravity="center"
+            android:textColor="@color/white" />
 
 
-        <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/iv_btn_add_count"
+        <ImageView
+            android:id="@+id/incrementImageView"
             android:layout_width="24dp"
             android:layout_height="24dp"
-            android:scaleType="center"
             android:src="@drawable/ic_plus"
+            android:scaleType="center"
             app:tint="@color/white" />
 
     </LinearLayout>
 
-    <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/iv_btn_delete_item"
+    <ImageView
+        android:id="@+id/deleteImageView"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:layout_gravity="center"
+        android:src="@drawable/ic_delete_icon"
         android:layout_marginStart="4dp"
         android:scaleType="center"
-        android:src="@drawable/ic_delete_icon" />
+        android:layout_gravity="center" />
 
 </LinearLayout>

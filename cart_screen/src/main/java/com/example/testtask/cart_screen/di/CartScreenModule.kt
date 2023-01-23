@@ -1,23 +1,28 @@
 package com.example.testtask.cart_screen.di
 
-import com.example.testtask.cart_screen.network.api.retrofitBuilder.CartScreenRetrofitBuilder
-import com.example.testtask.cart_screen.usecases.GetCartItemsToCheckoutUseCase
-import com.example.testtask.cart_screen.viewmodels.CartScreenViewModel
+import com.example.testtask.cart_screen.data.remote.CartScreenService
+import com.example.testtask.cart_screen.data.repository.CartScreenRepositoryImpl
+import com.example.testtask.cart_screen.domain.repository.CartScreenRepository
+import com.example.testtask.cart_screen.domain.usecases.GetCartUseCase
+import com.example.testtask.cart_screen.presentation.viewmodel.CartViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
+import retrofit2.Retrofit
 
 val CartScreenModule = module {
-
     single {
-        CartScreenRetrofitBuilder().provideRetrofitInstance()
+        provideCartScreenService(retrofit = get())
     }
-
+    single<CartScreenRepository> {
+        CartScreenRepositoryImpl(cartScreenService = get(), cartScreenDao = get())
+    }
     factory {
-        GetCartItemsToCheckoutUseCase(get())
+        GetCartUseCase(get())
     }
-
     viewModel {
-        CartScreenViewModel(get())
+        CartViewModel(get())
     }
-
 }
+
+fun provideCartScreenService(retrofit: Retrofit): CartScreenService =
+    retrofit.create(CartScreenService::class.java)
