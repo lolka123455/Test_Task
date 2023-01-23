@@ -35,7 +35,7 @@ class CartViewModel(
         _uiState.postValue(UiState.Loading)
         viewModelScope.launch(dispatcherIo) {
             val cartCallResult = getCartUseCase.execute()
-            if (cartCallResult is FetchResult.Success) {
+            if (cartCallResult is FetchResult.SuccessDataUpload) {
                 _cartItems.postValue(cartCallResult.data.basket)
                 _total.postValue(cartCallResult.data.total)
                 _delivery.postValue(cartCallResult.data.delivery)

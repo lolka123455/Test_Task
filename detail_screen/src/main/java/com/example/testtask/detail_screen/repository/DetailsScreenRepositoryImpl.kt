@@ -17,21 +17,21 @@ class DetailsScreenRepositoryImpl(
             getProductDetailsFromDatabase()
         } catch (e: NullPointerException) {
             val productDetailsNetworkResult = getProductDetailsFromNetwork()
-            if (productDetailsNetworkResult is FetchResult.Success) {
+            if (productDetailsNetworkResult is FetchResult.SuccessDataUpload) {
                 saveProductDetailsInDatabase(productDetailsNetworkResult.data)
             }
             productDetailsNetworkResult
         }
 
     private fun getProductDetailsFromDatabase(): FetchResult<ProductDetails> =
-        FetchResult.Success(detailsScreenDao.getProductDetails().mapToDomain())
+        FetchResult.SuccessDataUpload(detailsScreenDao.getProductDetails().mapToDomain())
 
     private suspend fun getProductDetailsFromNetwork(): FetchResult<ProductDetails> =
         try {
             val productDetails = detailsScreenService.getDetails().mapToDomain()
-            FetchResult.Success(productDetails)
+            FetchResult.SuccessDataUpload(productDetails)
         } catch (e: Exception) {
-            FetchResult.Error(e.message)
+            FetchResult.ErrorLoadingData(e.message)
         }
 
     private fun saveProductDetailsInDatabase(details: ProductDetails) {

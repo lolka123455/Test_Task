@@ -19,21 +19,21 @@ class MainScreenRepositoryImpl(
             getMainPageFromDatabase()
         } catch (e: NullPointerException) {
             val mainPageNetworkResult = getMainPageFromNetwork()
-            if (mainPageNetworkResult is FetchResult.Success) {
+            if (mainPageNetworkResult is FetchResult.SuccessDataUpload) {
                 saveMainPageInDatabase(mainPageNetworkResult.data)
             }
             mainPageNetworkResult
         }
 
     private fun getMainPageFromDatabase(): FetchResult<MainPage> =
-        FetchResult.Success(mainScreenDao.getMainPage().mapToDomain())
+        FetchResult.SuccessDataUpload(mainScreenDao.getMainPage().mapToDomain())
 
     private suspend fun getMainPageFromNetwork(): FetchResult<MainPage> =
         try {
             val mainPage = mainScreenService.getMainDataAsync().mapToDomain()
-            FetchResult.Success(mainPage)
+            FetchResult.SuccessDataUpload(mainPage)
         } catch (e: Exception) {
-            FetchResult.Error(e.message)
+            FetchResult.ErrorLoadingData(e.message)
         }
 
     private fun saveMainPageInDatabase(mainPage: MainPage) {
@@ -45,21 +45,21 @@ class MainScreenRepositoryImpl(
             getCartFromDatabase()
         } catch (e: NullPointerException) {
             val cartNetworkResult = getCartFromNetwork()
-            if (cartNetworkResult is FetchResult.Success) {
+            if (cartNetworkResult is FetchResult.SuccessDataUpload) {
                 saveCartInDatabase(cartNetworkResult.data)
             }
             cartNetworkResult
         }
 
     private fun getCartFromDatabase(): FetchResult<Cart> =
-        FetchResult.Success(mainScreenDao.getCart().mapToDomain())
+        FetchResult.SuccessDataUpload(mainScreenDao.getCart().mapToDomain())
 
     private suspend fun getCartFromNetwork() =
         try {
             val cart = mainScreenService.getCartDataAsync().mapToDomain()
-            FetchResult.Success(cart)
+            FetchResult.SuccessDataUpload(cart)
         } catch (e: Exception) {
-            FetchResult.Error(e.message)
+            FetchResult.ErrorLoadingData(e.message)
         }
 
     private fun saveCartInDatabase(cart: Cart) {

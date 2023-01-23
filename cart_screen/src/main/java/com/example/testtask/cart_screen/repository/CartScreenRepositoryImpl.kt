@@ -17,21 +17,21 @@ class CartScreenRepositoryImpl(
             getCartFromDatabase()
         } catch (e: NullPointerException) {
             val cartNetworkResult = getCartFromNetwork()
-            if (cartNetworkResult is FetchResult.Success) {
+            if (cartNetworkResult is FetchResult.SuccessDataUpload) {
                 saveCartInDatabase(cartNetworkResult.data)
             }
             cartNetworkResult
         }
 
     private fun getCartFromDatabase(): FetchResult<Cart> =
-        FetchResult.Success(cartScreenDao.getCart().mapToDomain())
+        FetchResult.SuccessDataUpload(cartScreenDao.getCart().mapToDomain())
 
     private suspend fun getCartFromNetwork(): FetchResult<Cart> =
         try {
             val cart = cartScreenService.getCart().mapToDomain()
-            FetchResult.Success(cart)
+            FetchResult.SuccessDataUpload(cart)
         } catch (e: Exception) {
-            FetchResult.Error(e.message)
+            FetchResult.ErrorLoadingData(e.message)
         }
 
     private fun saveCartInDatabase(details: Cart) {

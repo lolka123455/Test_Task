@@ -105,7 +105,7 @@ class MainViewModel(
     private fun getMainPage() {
         viewModelScope.launch(dispatcherIo) {
             val mainPageCallResult = getMainPageUseCase.execute()
-            if (mainPageCallResult is FetchResult.Success) {
+            if (mainPageCallResult is FetchResult.SuccessDataUpload) {
                 hotSale = mainPageCallResult.data.hotSale
                 bestSeller = mainPageCallResult.data.bestSeller
                 getFilterOptions()
@@ -139,7 +139,7 @@ class MainViewModel(
     private fun getCart() {
         viewModelScope.launch(dispatcherIo) {
             val cartCallResult = getCartUseCase.execute()
-            if (cartCallResult is FetchResult.Success) {
+            if (cartCallResult is FetchResult.SuccessDataUpload) {
                 _cartSize.postValue(cartCallResult.data.itemsCount)
             } else {
                 Log.e("cart", "error case")

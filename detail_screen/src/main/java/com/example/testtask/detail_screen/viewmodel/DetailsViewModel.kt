@@ -30,7 +30,7 @@ class DetailsViewModel(
     private fun getDetails() {
         viewModelScope.launch(dispatcherIo) {
             val productDetailsCallResult = getProductDetailsUseCase.execute()
-            if (productDetailsCallResult is FetchResult.Success) {
+            if (productDetailsCallResult is FetchResult.SuccessDataUpload) {
                 _productDetails.postValue(productDetailsCallResult.data!!)
                 _uiState.postValue(UiState.Success)
             } else {
