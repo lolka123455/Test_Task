@@ -1,6 +1,6 @@
-package com.example.testtask.cart_screen.data.local.models
+package com.example.testtask.cart_screen.data.models
 
-import com.example.testtask.cart_screen.domain.entities.Basket
+import com.example.testtask.cart_screen.entities.Basket
 
 data class BasketLocalDto(
     val id: Int,

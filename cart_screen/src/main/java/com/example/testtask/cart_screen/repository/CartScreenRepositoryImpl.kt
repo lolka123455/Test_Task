@@ -1,11 +1,10 @@
-package com.example.testtask.cart_screen.data.repository
+package com.example.testtask.cart_screen.repository
 
-import com.example.testtask.cart_screen.data.local.dao.CartScreenDao
-import com.example.testtask.cart_screen.data.local.models.CartLocalDto
-import com.example.testtask.cart_screen.data.remote.CartScreenService
+import com.example.testtask.cart_screen.data.dao.CartScreenDao
+import com.example.testtask.cart_screen.data.models.CartLocalDto
+import com.example.testtask.cart_screen.api.CartScreenService
 import com.example.testtask.state_network_connection.FetchResult
-import com.example.testtask.cart_screen.domain.entities.Cart
-import com.example.testtask.cart_screen.domain.repository.CartScreenRepository
+import com.example.testtask.cart_screen.entities.Cart
 import java.lang.Exception
 
 class CartScreenRepositoryImpl(
