@@ -84,11 +84,11 @@ class MainScreenFragment : Fragment() {
     }
 
     private fun openCart() {
-        findNavController().navigate(AppScreens.CartScreen.Entry)
+        findNavController().navigate(AppScreens.CartScreen)
     }
 
     private fun openItemDetails() {
-        findNavController().navigate(AppScreens.DetailsScreen.Entry)
+        findNavController().navigate(AppScreens.DetailsScreen)
     }
 
     private fun showFilter() {

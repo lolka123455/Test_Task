@@ -1,13 +1,9 @@
 package com.example.testtask.navigation
 
+/**
+ * Class containing IDs for all the screens in the app
+ */
 object AppScreens {
-
-    object DetailsScreen {
-        val Entry = R.id.fragment_details
-    }
-
-    object CartScreen {
-        val Entry = R.id.fragment_cart
-    }
-
+    var DetailsScreen = R.id.fragment_details
+    var CartScreen = R.id.fragment_cart
 }
