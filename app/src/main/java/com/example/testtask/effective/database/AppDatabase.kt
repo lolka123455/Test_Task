@@ -9,11 +9,11 @@ import com.example.testtask.cart_screen.data.models.CartLocalDto
 import com.example.testtask.detail_screen.data.converters.ProductDetailsConverter
 import com.example.testtask.detail_screen.data.dao.DetailsScreenDao
 import com.example.testtask.detail_screen.data.models.ProductDetailsLocalDto
-import com.example.testtask.main_screen.data.local.converters.BestSellersConverter
-import com.example.testtask.main_screen.data.local.converters.HotSalesConverter
-import com.example.testtask.main_screen.data.local.dao.MainScreenDao
-import com.example.testtask.main_screen.data.local.models.cart.CartMainScreenLocalDto
-import com.example.testtask.main_screen.data.local.models.main_page.MainPageLocalDto
+import com.example.testtask.main_screen.data.converters.BestSellersConverter
+import com.example.testtask.main_screen.data.converters.HotSalesConverter
+import com.example.testtask.main_screen.data.dao.MainScreenDao
+import com.example.testtask.main_screen.data.models.cart.CartMainScreenLocalDto
+import com.example.testtask.main_screen.data.models.main_page.MainPageLocalDto
 
 
 @Database(
