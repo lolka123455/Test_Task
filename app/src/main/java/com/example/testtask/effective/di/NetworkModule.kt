@@ -6,6 +6,8 @@ import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
+const val BASE_URL = "https://run.mocky.io/"
+
 val NetworkModule = module {
     single {
         HttpLoggingInterceptor().apply {
@@ -19,7 +21,7 @@ val NetworkModule = module {
         Retrofit.Builder()
             .client(get())
             .addConverterFactory(GsonConverterFactory.create())
-            .baseUrl("https://run.mocky.io/")
+            .baseUrl(BASE_URL)
             .build()
     }
 }
