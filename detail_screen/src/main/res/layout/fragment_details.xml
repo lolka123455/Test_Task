@@ -60,7 +60,7 @@
             android:orientation="vertical">
 
             <androidx.viewpager2.widget.ViewPager2
-                android:id="@+id/viewPager"
+                android:id="@+iFixed tablayout display bug d/viewPager"
                 android:layout_width="match_parent"
                 android:layout_height="300dp"
                 android:orientation="horizontal"
@@ -121,8 +121,30 @@
                 <com.google.android.material.tabs.TabLayout
                     android:layout_width="match_parent"
                     android:layout_height="36dp"
-                    android:background="@android:color/transparent"
-                    app:tabIndicatorColor="@color/orange" />
+                    android:layout_marginHorizontal="27dp"
+                    android:layout_marginTop="32dp"
+                    android:backgroundTint="@color/white"
+                    app:tabIndicatorColor="@color/orange"
+                    app:tabIndicatorHeight="3dp"
+                    app:tabSelectedTextColor="@color/dark_blue"
+                    app:tabTextColor="@color/black">
+
+                    <com.google.android.material.tabs.TabItem
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/shop" />
+
+                    <com.google.android.material.tabs.TabItem
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/details" />
+
+                    <com.google.android.material.tabs.TabItem
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/features" />
+
+                </com.google.android.material.tabs.TabLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -134,6 +156,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="32dp"
                         android:layout_weight="1"
                         android:gravity="center"
                         android:orientation="vertical">
@@ -158,6 +181,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="32dp"
                         android:layout_weight="1"
                         android:gravity="center"
                         android:orientation="vertical">
@@ -182,6 +206,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="32dp"
                         android:layout_weight="1"
                         android:gravity="center"
                         android:orientation="vertical">
@@ -206,6 +231,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="32dp"
                         android:layout_weight="1"
                         android:gravity="center"
                         android:orientation="vertical">
