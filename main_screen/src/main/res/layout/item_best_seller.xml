@@ -3,16 +3,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_gravity="center"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_gravity="center">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/itemCardViewWithoutFavouriteButton"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_gravity="center"
         android:layout_marginHorizontal="@dimen/margin_4"
         android:layout_marginVertical="@dimen/margin_6"
+        android:backgroundTint="@color/white"
         app:cardCornerRadius="@dimen/margin_8"
         app:cardElevation="0dp"
         app:layout_constraintCircleRadius="8dp">
@@ -23,7 +24,7 @@
             android:background="@android:color/transparent"
             android:orientation="vertical">
 
-            <ImageView
+            <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/bestSellerImageView"
                 android:layout_width="180dp"
                 android:layout_height="165dp"
@@ -37,15 +38,16 @@
                 android:layout_marginTop="@dimen/margin_4"
                 android:orientation="horizontal">
 
-                <TextView
+                <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/priceWithoutDiscountTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/dark_grey"
                     android:textSize="16sp"
                     android:textStyle="bold"
                     tools:text="$1,047" />
 
-                <TextView
+                <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/priceWithDiscountTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -57,7 +59,7 @@
 
             </LinearLayout>
 
-            <TextView
+            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/titleBestSellerTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -67,6 +69,7 @@
                 android:layout_marginBottom="@dimen/margin_16"
                 android:ellipsize="end"
                 android:gravity="center"
+                android:textColor="@color/dark_grey"
                 android:textSize="11sp"
                 tools:text="Samsung Galaxy s20 Ultra" />
 
@@ -79,13 +82,13 @@
         android:layout_width="24dp"
         android:layout_height="24dp"
         android:layout_gravity="center|top"
-        android:layout_marginTop="12dp"
         android:layout_marginStart="60dp"
+        android:layout_marginTop="12dp"
         android:background="@drawable/round_shape_white"
         android:elevation="4dp"
         android:padding="5dp">
 
-        <ImageView
+        <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/favouriteButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
