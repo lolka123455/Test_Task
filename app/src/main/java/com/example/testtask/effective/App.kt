@@ -11,8 +11,31 @@ import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
 import org.koin.core.logger.Level
 
+/**
+ * This is the Application class of the app. It is responsible for initializing the Koin dependency injection framework,
+ * and for providing the list of modules to be used throughout the app.
+ *
+ * @constructor Creates a new instance of the App
+ *
+ * @property modules the list of modules to be used throughout the app
+ *
+ * @see android.app.Application
+ * @see org.koin.core.context.startKoin
+ *
+ */
 
 class App : Application() {
+
+    /**
+     * The list of modules to be used throughout the app
+     *
+     * @see CartScreenModule
+     * @see MainScreenModule
+     * @see DetailsScreenModule
+     * @see NetworkModule
+     * @see DatabaseModule
+     *
+     */
 
     private val modules = listOf(
         CartScreenModule,
