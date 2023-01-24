@@ -56,18 +56,17 @@ class CartScreenFragment : Fragment() {
         }
     }
 
-    //Мб это можно переделать в более красивый вид
     private fun updateUiState(state: UiState) {
         when (state) {
             is UiState.Success -> with(binding) {
                 successStateUi.visibility = View.VISIBLE
-//                errorStateUi.visibility = View.GONE
+                errorStateUi.errorStateUi.visibility = View.GONE
                 progressBar.visibility = View.GONE
                 recyclerView.visibility = View.VISIBLE
             }
             is UiState.Error -> with(binding) {
                 successStateUi.visibility = View.GONE
-//                errorStateUi.visibility = View.VISIBLE
+                errorStateUi.errorStateUi.visibility = View.VISIBLE
                 setTryAgainButtonClickListener()
             }
             is UiState.Loading -> with(binding) {
@@ -98,5 +97,5 @@ class CartScreenFragment : Fragment() {
     }
 
     private fun Int.toPriceFormat(): String =
-        if (this >= 1000) "$%.${3}f us".format(this / 1000.0) else "$$this us"
+        if (this >= 1000) "${this / 1000.0}K us" else "$this us"
 }
