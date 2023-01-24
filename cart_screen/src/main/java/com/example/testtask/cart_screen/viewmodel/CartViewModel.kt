@@ -1,48 +1,48 @@
 package com.example.testtask.cart_screen.viewmodel
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.testtask.cart_screen.entities.Basket
 import com.example.testtask.cart_screen.usecases.GetCartUseCase
 import com.example.testtask.state_network_connection.FetchResult
 import com.example.testtask.state_network_connection.UiState
-import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
 class CartViewModel(
     private val getCartUseCase: GetCartUseCase,
-    private val dispatcherIo: CoroutineDispatcher = Dispatchers.IO
 ) : ViewModel() {
 
-    private val _uiState = MutableLiveData<UiState>()
-    private val _cartItems = MutableLiveData<List<Basket>>()
-    private val _total = MutableLiveData<Int>()
-    private val _delivery = MutableLiveData<String>()
+    private val _uiState = MutableStateFlow<UiState>(UiState.Loading)
+    val uiState: StateFlow<UiState> = _uiState
 
-    val uiState: LiveData<UiState> = _uiState
-    val cartItems: LiveData<List<Basket>> = _cartItems
-    val total: LiveData<Int> = _total
-    val delivery: LiveData<String> = _delivery
+    private val _cartItems = MutableStateFlow<List<Basket>>(emptyList())
+    val cartItems: StateFlow<List<Basket>> = _cartItems
+
+    private val _total = MutableStateFlow(0)
+    val total: StateFlow<Int> = _total
+
+    private val _delivery = MutableStateFlow("")
+    val delivery: StateFlow<String> = _delivery
 
     init {
         getCart()
     }
 
     private fun getCart() {
-        _uiState.postValue(UiState.Loading)
-        viewModelScope.launch(dispatcherIo) {
+        _uiState.value = UiState.Loading
+        viewModelScope.launch(Dispatchers.IO) {
             val cartCallResult = getCartUseCase.execute()
             if (cartCallResult is FetchResult.SuccessDataUpload) {
-                _cartItems.postValue(cartCallResult.data.basket)
-                _total.postValue(cartCallResult.data.total)
-                _delivery.postValue(cartCallResult.data.delivery)
+                _cartItems.value = cartCallResult.data.basket
+                _total.value = cartCallResult.data.total
+                _delivery.value = cartCallResult.data.delivery
 
-                _uiState.postValue(UiState.Success)
+                _uiState.value = UiState.Success
             } else {
-                _uiState.postValue(UiState.Error)
+                _uiState.value = UiState.Error
             }
         }
     }
