@@ -97,5 +97,7 @@ class CartScreenFragment : Fragment() {
     }
 
     private fun Int.toPriceFormat(): String =
-        if (this >= 1000) "${this / 1000.0}K us" else "$this us"
+        if (this >= 1000) {
+            "$%.${3}f us".format(this / 1000.0)
+        } else "$$this us"
 }
