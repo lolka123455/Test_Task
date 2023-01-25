@@ -96,6 +96,14 @@ class CartScreenFragment : Fragment() {
         }
     }
 
+    /**
+     * Converts an integer to a price format string.
+     *
+     * @return a formatted string with the price, with "us" added at the end.
+     * If the integer is greater than or equal to 1000, the value is divided by 1000 and
+     * a "k" is appended to the end of the value before "us".
+     */
+
     private fun Int.toPriceFormat(): String =
         if (this >= 1000) {
             "$%.${3}f us".format(this / 1000.0)

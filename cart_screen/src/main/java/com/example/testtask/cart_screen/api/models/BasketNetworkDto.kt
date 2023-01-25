@@ -10,6 +10,15 @@ data class BasketNetworkDto(
     val count: Int? = null
 ) {
 
+    /**
+     * This function maps the BasketNetworkDto to the Basket model for the domain layer
+     *
+     * @return a new instance of the Basket model
+     *
+     * @see Basket
+     *
+     */
+
     fun mapToDomain() =
         Basket(id = id, images = images, price = price, title = title, count = count)
 }

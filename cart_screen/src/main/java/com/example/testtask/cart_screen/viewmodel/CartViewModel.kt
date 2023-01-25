@@ -11,6 +11,10 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
+/**
+ * @param getCartUseCase instance of [GetCartUseCase] that handles the business logic of getting the cart details
+ */
+
 class CartViewModel(
     private val getCartUseCase: GetCartUseCase,
 ) : ViewModel() {
@@ -31,6 +35,10 @@ class CartViewModel(
         getCart()
     }
 
+    /**
+     * Executes the get cart use case to fetch the cart details.
+     */
+
     private fun getCart() {
         _uiState.value = UiState.Loading
         viewModelScope.launch(Dispatchers.IO) {
@@ -46,6 +54,10 @@ class CartViewModel(
             }
         }
     }
+
+    /**
+     * Retries the network call to fetch the cart details.
+     */
 
     fun retryNetworkCall() {
         getCart()

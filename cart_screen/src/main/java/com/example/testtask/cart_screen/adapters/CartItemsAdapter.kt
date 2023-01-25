@@ -9,6 +9,19 @@ import com.bumptech.glide.Glide
 import com.example.testtask.cart_screen.databinding.ItemCartItemLayoutBinding
 import com.example.testtask.cart_screen.entities.Basket
 
+/**
+ * This is an adapter that is responsible for displaying the items in the cart.
+ *
+ * @property currentList the list of items in the cart
+ * @property differ an AsyncListDiffer object used to handle the updates of the list of items
+ * @property diffCallback a DiffUtil.ItemCallback object used to calculate the difference between two lists
+ *
+ * @constructor Creates a new instance of the CartItemsAdapter
+ *
+ * @see RecyclerView.Adapter
+ *
+ */
+
 class CartItemsAdapter : RecyclerView.Adapter<CartItemsAdapter.CartItemViewHolder>() {
 
     var currentList: List<Basket>
@@ -54,7 +67,17 @@ class CartItemsAdapter : RecyclerView.Adapter<CartItemsAdapter.CartItemViewHolde
         val count = binding.itemCountTextView
     }
 
+    /**
+     *This function takes an integer value and converts it to a string in price format.
+     * The format is "$%.2f", which means that the value will be displayed as a decimal with
+     * two decimal places and a dollar sign at the beginning. The value is first converted to a
+     * Double before being formatted.
+     *
+     * @return the formatted price string
+     *
+     * Note: This function only formats the number, it doesn't check whether the number is
+     * a valid price or not.
+     */
+
     private fun Int.toPriceFormat(): String = "$%.${2}f".format(this.toDouble())
 }
-
-

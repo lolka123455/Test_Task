@@ -9,12 +9,24 @@ import com.example.testtask.cart_screen.entities.Cart
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.io.IOException
-import java.lang.Exception
+
+/**
+ * Implementation of the [CartScreenRepository] interface that handles data operations for the cart screen.
+ *
+ * @param cartScreenService instance of [CartScreenService] that handles network operations
+ * @param cartScreenDao instance of [CartScreenDao] that handles database operations
+ */
 
 class CartScreenRepositoryImpl(
     private val cartScreenService: CartScreenService,
     private val cartScreenDao: CartScreenDao
 ) : CartScreenRepository {
+
+    /**
+     * Retrieves the cart details from the local database, if not found, it fetches the data from the network.
+     *
+     * @return [FetchResult] that contains the cart details or an error message
+     */
 
     override suspend fun getCart(): FetchResult<Cart> =
         withContext(Dispatchers.IO) {
@@ -34,6 +46,12 @@ class CartScreenRepositoryImpl(
             }
         }
 
+    /**
+     * Fetches the cart details from the network.
+     *
+     * @return [FetchResult] that contains the cart details or an error message
+     */
+
     private suspend fun getCartFromNetwork(): FetchResult<Cart> =
         withContext(Dispatchers.IO) {
             try {
@@ -44,7 +62,13 @@ class CartScreenRepositoryImpl(
             }
         }
 
-    private suspend fun saveCartInDatabase(details: Cart) {
+    /**
+     * Saves the cart details in the local database.
+     *
+     * @param details [Cart] object that needs to be saved
+     */
+
+    private fun saveCartInDatabase(details: Cart) {
         cartScreenDao.saveCart(CartLocalDto.fromDomain(details))
     }
 }

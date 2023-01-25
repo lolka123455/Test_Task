@@ -9,6 +9,15 @@ data class CartNetworkDto(
     val total: Int
 ) {
 
+    /**
+     * This function maps the properties of an object to the Cart model for the domain layer.
+     *
+     * @return a new instance of the Cart model
+     *
+     * @see Cart
+     *
+     */
+
     fun mapToDomain() = Cart(
         basket = basket.map { it.mapToDomain() },
         delivery = delivery,
