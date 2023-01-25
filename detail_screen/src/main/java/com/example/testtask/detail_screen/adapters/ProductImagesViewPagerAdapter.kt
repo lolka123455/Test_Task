@@ -8,6 +8,19 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.testtask.detail_screen.databinding.ItemProductImageBinding
 
+/**
+ * ProductImagesViewPagerAdapter is a RecyclerView Adapter that displays a list of product images using a ViewPager.
+ * It uses AsyncListDiffer to handle updates to the list of images and DiffUtil to efficiently update the RecyclerView.
+ *
+ * @property currentList a list of image urls to be displayed in the ViewPager
+ *
+ * @constructor Creates a new ProductImagesViewPagerAdapter
+ *
+ * @see RecyclerView.Adapter
+ * @see AsyncListDiffer
+ * @see DiffUtil
+ */
+
 class ProductImagesViewPagerAdapter() :
     RecyclerView.Adapter<ProductImagesViewPagerAdapter.HotSaleViewHolder>() {
 
