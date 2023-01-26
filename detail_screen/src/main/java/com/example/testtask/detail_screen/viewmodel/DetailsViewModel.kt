@@ -10,6 +10,8 @@ import com.example.testtask.detail_screen.usecases.GetProductDetailsUseCase
 import com.example.testtask.state_network_connection.FetchResult
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
 class DetailsViewModel(
@@ -17,11 +19,13 @@ class DetailsViewModel(
     private val dispatcherIo: CoroutineDispatcher = Dispatchers.IO
 ) : ViewModel() {
 
-    private val _uiState = MutableLiveData<UiState>()
-    private val _productDetails = MutableLiveData<ProductDetails>()
+    private val _uiState = MutableStateFlow<UiState>(UiState.Loading)
+    val uiState: StateFlow<UiState> = _uiState
 
-    val productDetails: LiveData<ProductDetails> = _productDetails
-    val uiState: LiveData<UiState> = _uiState
+
+    private val _productDetails = MutableStateFlow<ProductDetails?>(null)
+    val productDetails: StateFlow<ProductDetails?> = _productDetails
+
 
     init {
         getDetails()
@@ -31,10 +35,10 @@ class DetailsViewModel(
         viewModelScope.launch(dispatcherIo) {
             val productDetailsCallResult = getProductDetailsUseCase.execute()
             if (productDetailsCallResult is FetchResult.SuccessDataUpload) {
-                _productDetails.postValue(productDetailsCallResult.data!!)
-                _uiState.postValue(UiState.Success)
+                _productDetails.value = productDetailsCallResult.data
+                _uiState.value = UiState.Success
             } else {
-                _uiState.postValue(UiState.Error)
+                _uiState.value = UiState.Error
             }
         }
     }

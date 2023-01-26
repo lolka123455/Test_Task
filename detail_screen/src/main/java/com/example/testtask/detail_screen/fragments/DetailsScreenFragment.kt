@@ -9,8 +9,10 @@ import android.view.ViewGroup
 import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
@@ -21,6 +23,8 @@ import com.example.testtask.detail_screen.viewmodel.DetailsViewModel
 import com.example.testtask.detail_screen.adapters.ProductImagesViewPagerAdapter
 import com.example.testtask.navigation.AppScreens
 import com.example.testtask.state_network_connection.UiState
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import kotlin.math.abs
 
@@ -148,34 +152,38 @@ class DetailsScreenFragment : Fragment() {
 
     private fun observe() {
         with(viewModel) {
-            productDetails.observe(viewLifecycleOwner) {
+            productDetails.onEach {
                 fillDetailsUi(it)
-            }
-            uiState.observe(viewLifecycleOwner) {
+            }.launchIn(viewLifecycleOwner.lifecycleScope)
+            uiState.onEach {
                 updateUiState(it)
-            }
+            }.launchIn(viewLifecycleOwner.lifecycleScope)
         }
     }
 
-    private fun fillDetailsUi(details: ProductDetails) {
+    private fun fillDetailsUi(details: ProductDetails?) {
         with(binding) {
-            titleTextView.text = details.title
-            ratingBar.rating = details.rating.toFloat()
-            cpuTextView.text = details.cpu
-            cameraTextView.text = details.camera
-            ramTextView.text = details.ram
-            sdTextView.text = details.sd
-            priceTextView.text = details.price.toPriceFormat()
-            favouriteImageView.setImageResource(
-                if (details.isFavorites) {
-                    R.drawable.ic_favorite
-                } else {
-                    R.drawable.ic_favorite_border
-                }
-            )
-            setProductColors(details)
-            setProductCapacity(details)
-            adapter.currentList = details.images
+            if (details != null) {
+                titleTextView.text = details.title
+                ratingBar.rating = details.rating.toFloat()
+                cpuTextView.text = details.cpu
+                cameraTextView.text = details.camera
+                ramTextView.text = details.ram
+                sdTextView.text = details.sd
+                priceTextView.text = details.price.toPriceFormat()
+
+                favouriteImageView.setImageResource(
+                    if (details.isFavorites) {
+                        R.drawable.ic_favorite
+                    } else {
+                        R.drawable.ic_favorite_border
+                    }
+                )
+
+                setProductColors(details)
+                setProductCapacity(details)
+                adapter.currentList = details.images
+            }
         }
     }
 
@@ -201,14 +209,16 @@ class DetailsScreenFragment : Fragment() {
         when (state) {
             is UiState.Success -> with(binding) {
                 successStateUi.visibility = View.VISIBLE
-//                errorStateUi.visibility = View.GONE
+                errorStateUi.errorStateUi.visibility = View.GONE
             }
             is UiState.Error -> with(binding) {
                 successStateUi.visibility = View.GONE
-//                errorStateUi.visibility = View.VISIBLE
+                errorStateUi.errorStateUi.visibility = View.VISIBLE
                 setTryAgainButtonClickListener()
             }
-            is UiState.Loading -> {}
+            is UiState.Loading -> with(binding) {
+                successStateUi.visibility = View.VISIBLE
+            }
         }
     }
 
