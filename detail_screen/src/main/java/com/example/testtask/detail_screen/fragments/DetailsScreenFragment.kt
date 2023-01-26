@@ -68,12 +68,15 @@ class DetailsScreenFragment : Fragment() {
         }
     }
 
+    /**
+     * Sets up a page transformer for the ViewPager2 that scales the side pages to 80% of their original height
+     * and keeps the front page at 100% of its original height.
+     */
+
     private fun ViewPager2.setupTransformer() {
         setPageTransformer { page, position ->
             val sidePageScaleY = 0.8f
-            val isFrontPage = 1 - abs(position) // 1 if is front, 0 if not
-
-            // makes side page height to (sidePageScaleY * 100)% of full size, front page to full size
+            val isFrontPage = 1 - abs(position)
             page.scaleY = sidePageScaleY + isFrontPage * (1 - sidePageScaleY)
         }
     }
@@ -161,6 +164,11 @@ class DetailsScreenFragment : Fragment() {
         }
     }
 
+    /**
+     * This function is used to fill the UI elements with the details of a product.
+     * @param details: ProductDetails? - an object containing all the details of the product.
+     */
+
     private fun fillDetailsUi(details: ProductDetails?) {
         with(binding) {
             if (details != null) {
@@ -187,6 +195,15 @@ class DetailsScreenFragment : Fragment() {
         }
     }
 
+    /**
+     * This function updates the capacity of the product in the UI.
+     * @param details: ProductDetails - A data class that contains the product information.
+     * @property capacity: List<Int> - A list of integers representing the capacity of the product.
+     *
+     * @see ProductDetails
+     *
+     */
+
     private fun setProductCapacity(details: ProductDetails) {
         details.capacity.forEachIndexed { i, capacity ->
             with(capacityTextViews[i]) {
@@ -195,6 +212,13 @@ class DetailsScreenFragment : Fragment() {
             }
         }
     }
+
+    /**
+     * setProductColors sets the background color of the colorImageViews based on the color
+     * property of the passed in [ProductDetails] object.
+     *
+     * @param details a [ProductDetails] object that contains the color property
+     */
 
     private fun setProductColors(details: ProductDetails) {
         details.color.forEachIndexed { i, color ->
@@ -237,6 +261,13 @@ class DetailsScreenFragment : Fragment() {
     private fun View.makeVisible() {
         visibility = View.VISIBLE
     }
+
+    /**
+    *Converts an Int to a formatted price String.
+    *@return Formatted price String.
+    *If the input Int is greater than or equal to 1000, the format is "$x,xxx.00".
+    *If the input Int is less than 1000, the format is "x.00".
+     */
 
     private fun Int.toPriceFormat(): String =
         if (this >= 1000) {
