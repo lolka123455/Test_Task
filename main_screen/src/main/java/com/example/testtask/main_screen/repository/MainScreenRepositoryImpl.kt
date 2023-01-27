@@ -1,5 +1,6 @@
 package com.example.testtask.main_screen.repository
 
+import android.database.sqlite.SQLiteException
 import com.example.testtask.main_screen.data.dao.MainScreenDao
 import com.example.testtask.main_screen.data.models.cart.CartMainScreenLocalDto
 import com.example.testtask.main_screen.api.MainScreenService
@@ -7,6 +8,7 @@ import com.example.testtask.main_screen.data.models.main_page.MainPageLocalDto
 import com.example.testtask.state_network_connection.FetchResult
 import com.example.testtask.main_screen.entities.cart.Cart
 import com.example.testtask.main_screen.entities.main_page.MainPage
+import java.io.IOException
 import java.lang.Exception
 
 class MainScreenRepositoryImpl(
@@ -17,7 +19,7 @@ class MainScreenRepositoryImpl(
     override suspend fun getMainPage(): FetchResult<MainPage> =
         try {
             getMainPageFromDatabase()
-        } catch (e: NullPointerException) {
+        } catch (e: SQLiteException) {
             val mainPageNetworkResult = getMainPageFromNetwork()
             if (mainPageNetworkResult is FetchResult.SuccessDataUpload) {
                 saveMainPageInDatabase(mainPageNetworkResult.data)
@@ -32,7 +34,7 @@ class MainScreenRepositoryImpl(
         try {
             val mainPage = mainScreenService.getMainDataAsync().mapToDomain()
             FetchResult.SuccessDataUpload(mainPage)
-        } catch (e: Exception) {
+        } catch (e: IOException) {
             FetchResult.ErrorLoadingData(e.message)
         }
 
@@ -43,7 +45,7 @@ class MainScreenRepositoryImpl(
     override suspend fun getCart(): FetchResult<Cart> =
         try {
             getCartFromDatabase()
-        } catch (e: NullPointerException) {
+        } catch (e: SQLiteException) {
             val cartNetworkResult = getCartFromNetwork()
             if (cartNetworkResult is FetchResult.SuccessDataUpload) {
                 saveCartInDatabase(cartNetworkResult.data)
@@ -58,7 +60,7 @@ class MainScreenRepositoryImpl(
         try {
             val cart = mainScreenService.getCartDataAsync().mapToDomain()
             FetchResult.SuccessDataUpload(cart)
-        } catch (e: Exception) {
+        } catch (e: IOException) {
             FetchResult.ErrorLoadingData(e.message)
         }
 

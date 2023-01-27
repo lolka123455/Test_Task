@@ -8,7 +8,7 @@ import android.widget.*
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.testtask.main_screen.R
+import com.example.testtask.state_network_connection.R
 import com.example.testtask.main_screen.databinding.FragmentMainBinding
 import com.example.testtask.main_screen.entities.main_page.BestSeller
 import com.example.testtask.main_screen.entities.main_page.HotSale
@@ -19,6 +19,7 @@ import com.example.testtask.main_screen.adapters.categories.CategoryItemTag
 import com.example.testtask.main_screen.adapters.hotSales.HotSalesDelegateAdapter
 import com.example.testtask.main_screen.adapters.search.SearchDelegateAdapter
 import com.example.testtask.main_screen.adapters.section.SectionDelegateAdapter
+import com.example.testtask.main_screen.databinding.BottomSheetDialogFilterBinding
 import com.example.testtask.main_screen.filterCategory.FilterCategory
 import com.example.testtask.main_screen.viewmodel.MainViewModel
 import com.example.testtask.navigation.AppScreens
@@ -46,19 +47,19 @@ class MainScreenFragment : Fragment() {
 
     private val categoriesDelegateAdapter = CategoriesDelegateAdapter(categoryItemClickListener)
 
-    private val compositeAdapter by lazy {
-        CompositeAdapter.Builder()
-            .add(SectionDelegateAdapter())
-            .add(categoriesDelegateAdapter)
-            .add(SearchDelegateAdapter())
-            .add(HotSalesDelegateAdapter(hotSalesItemClickListener))
-            .add(BestSellerDelegateAdapter(bestSellerItemClickListener))
-            .build()
+    private val compositeAdapter: CompositeAdapter by lazy {
+        val builder = CompositeAdapter.Builder()
+        builder.add(SectionDelegateAdapter())
+        builder.add(categoriesDelegateAdapter)
+        builder.add(SearchDelegateAdapter())
+        builder.add(HotSalesDelegateAdapter(hotSalesItemClickListener))
+        builder.add(BestSellerDelegateAdapter(bestSellerItemClickListener))
+        builder.build()
     }
 
-    private var brandsFilterItems: List<String> = emptyList()
-    private var pricesFilterItems: List<String> = emptyList()
-    private var sizesFilterItems: List<String> = emptyList()
+    private var brandsFilterItems = emptyList<String>()
+    private var pricesFilterItems = emptyList<String>()
+    private var sizesFilterItems = emptyList<String>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -92,25 +93,46 @@ class MainScreenFragment : Fragment() {
     }
 
     private fun showFilter() {
+        saveCurrentSelectedItems()
+        showFilterBottomSheetDialog()
+    }
+
+    private fun saveCurrentSelectedItems() {
         viewModel.saveCurrentSelectedItems()
+    }
+
+    private fun showFilterBottomSheetDialog() {
         val filterDialog = createFilterBottomSheetDialog()
         filterDialog.show()
     }
 
     private fun createFilterBottomSheetDialog(): BottomSheetDialog {
         val bottomSheetDialog = BottomSheetDialog(requireContext())
-        with(bottomSheetDialog) {
-            setContentView(R.layout.bottom_sheet_dialog_filter)
-            findViewById<Spinner>(R.id.brandsSpinner)?.setFilterSpinner(FilterCategory.BRAND)
-            findViewById<Spinner>(R.id.priceSpinner)?.setFilterSpinner(FilterCategory.PRICE)
-            findViewById<Spinner>(R.id.sizeSpinner)?.setFilterSpinner(FilterCategory.SIZE)
-            findViewById<TextView>(R.id.doneTextView)?.setOnClickListener { dismiss() }
-            findViewById<ImageView>(R.id.closeImageView)?.setOnClickListener {
-                undoFilterChanges()
-                dismiss()
-            }
-        }
+        val binding = BottomSheetDialogFilterBinding.inflate(layoutInflater)
+        bottomSheetDialog.setContentView(binding.root)
+        setupSpinners(binding)
+        setupDoneButton(binding, bottomSheetDialog)
+        setupCloseButton(binding, bottomSheetDialog)
         return bottomSheetDialog
+    }
+
+    private fun setupSpinners(binding: BottomSheetDialogFilterBinding) {
+        binding.brandsSpinner.setFilterSpinner(FilterCategory.BRAND)
+        binding.priceSpinner.setFilterSpinner(FilterCategory.PRICE)
+        binding.sizeSpinner.setFilterSpinner(FilterCategory.SIZE)
+    }
+
+    private fun setupDoneButton(binding: BottomSheetDialogFilterBinding,
+                                bottomSheetDialog: BottomSheetDialog) {
+        binding.doneTextView.setOnClickListener { bottomSheetDialog.dismiss() }
+    }
+
+    private fun setupCloseButton(binding: BottomSheetDialogFilterBinding,
+                                 bottomSheetDialog: BottomSheetDialog) {
+        binding.closeImageView.setOnClickListener {
+            undoFilterChanges()
+            bottomSheetDialog.dismiss()
+        }
     }
 
     private fun undoFilterChanges() {
@@ -118,13 +140,18 @@ class MainScreenFragment : Fragment() {
     }
 
     private fun Spinner.setFilterSpinner(category: FilterCategory) {
-        val items = when (category) {
+        val items = getFilterItems(category)
+        adapter = createSpinnerAdapter(items)
+        tag = category
+        onItemSelectedListener = createFilterSpinnerOnItemSelectedListener()
+    }
+
+    private fun getFilterItems(category: FilterCategory): List<String> {
+        return when (category) {
             FilterCategory.BRAND -> brandsFilterItems
             FilterCategory.PRICE -> pricesFilterItems
             FilterCategory.SIZE -> sizesFilterItems
         }
-        adapter = createSpinnerAdapter(items).apply { tag = category }
-        onItemSelectedListener = createFilterSpinnerOnItemSelectedListener()
     }
 
     private fun createFilterSpinnerOnItemSelectedListener() =
@@ -149,17 +176,14 @@ class MainScreenFragment : Fragment() {
         viewModel.setSelectedBrand(brand)
     }
 
-    private fun createSpinnerAdapter(items: List<String>) =
-        ArrayAdapter(
-            requireContext(),
-            android.R.layout.simple_spinner_item,
-            items
-        ).also { adapter ->
-            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        }
+    private fun createSpinnerAdapter(items: List<String>): ArrayAdapter<String> {
+        val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, items)
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        return adapter
+    }
 
     private fun setupRecyclerView() {
-        with(binding.mainRecyclerView) {
+        binding.mainRecyclerView.apply {
             adapter = compositeAdapter
             layoutManager = LinearLayoutManager(requireContext())
             itemAnimator = null
@@ -193,16 +217,9 @@ class MainScreenFragment : Fragment() {
     }
 
     private fun setCartSize(size: Int) {
-        if (size > 0) {
-            with(binding.bottomCartCountTextView) {
-                text = size.toString()
-                visibility = View.VISIBLE
-            }
-        } else {
-            with(binding.bottomCartCountTextView) {
-                text = size.toString()
-                visibility = View.GONE
-            }
+        binding.bottomCartCountTextView.apply {
+            text = size.toString()
+            visibility = if (size > 0) View.VISIBLE else View.GONE
         }
     }
 
@@ -210,26 +227,23 @@ class MainScreenFragment : Fragment() {
         when (state) {
             is UiState.Success -> with(binding) {
                 successStateUi.visibility = View.VISIBLE
-//                errorStateUi.visibility = View.GONE
+                errorStateUi.errorStateUi.visibility = View.GONE
             }
             is UiState.Error -> with(binding) {
                 successStateUi.visibility = View.GONE
-//                errorStateUi.visibility = View.VISIBLE
+                errorStateUi.errorStateUi.visibility = View.VISIBLE
                 setTryAgainButtonClickListener()
             }
-            is UiState.Loading -> {}
+            is UiState.Loading -> with(binding) {
+                successStateUi.visibility = View.VISIBLE
+            }
         }
     }
 
     private fun setTryAgainButtonClickListener() {
-        view?.let {
-            it.findViewById<FrameLayout>(
-                com.example.testtask.state_network_connection.R.id.tryAgainFrame
-            )?.let { tryAgainTextView ->
-                tryAgainTextView.setOnClickListener {
-                    viewModel.retryNetworkCall()
-                }
-            }
+        val tryAgainTextView = view?.findViewById<FrameLayout>(R.id.tryAgainFrame)
+        tryAgainTextView?.setOnClickListener {
+            viewModel.retryNetworkCall()
         }
     }
 }

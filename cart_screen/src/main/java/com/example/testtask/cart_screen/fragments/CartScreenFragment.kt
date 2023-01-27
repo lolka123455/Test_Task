@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.testtask.cart_screen.databinding.FragmentCartBinding
 import com.example.testtask.cart_screen.adapters.CartItemsAdapter
 import com.example.testtask.cart_screen.viewmodel.CartViewModel
+import com.example.testtask.state_network_connection.R
 import com.example.testtask.state_network_connection.UiState
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -78,14 +79,9 @@ class CartScreenFragment : Fragment() {
     }
 
     private fun setTryAgainButtonClickListener() {
-        view?.let {
-            it.findViewById<FrameLayout>(
-                com.example.testtask.state_network_connection.R.id.tryAgainFrame
-            )?.let { tryAgainTextView ->
-                tryAgainTextView.setOnClickListener {
-                    viewModel.retryNetworkCall()
-                }
-            }
+        val tryAgainTextView = view?.findViewById<FrameLayout>(R.id.tryAgainFrame)
+        tryAgainTextView?.setOnClickListener {
+            viewModel.retryNetworkCall()
         }
     }
 
