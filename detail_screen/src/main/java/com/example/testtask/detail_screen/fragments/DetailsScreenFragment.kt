@@ -158,12 +158,12 @@ class DetailsScreenFragment : Fragment() {
         )
     }
 
-    //I had to split one function into three
-    // This will improve readability and the ability to expand if needed
-
     private fun setCapacityTextColor(capacity: TextView) {
         capacity.setTextColor(Color.WHITE)
     }
+
+    //I had to split one function into three
+    // This will improve readability and the ability to expand if needed
 
     private fun resetCapacitySelection() {
         clearCapacityBackground()
