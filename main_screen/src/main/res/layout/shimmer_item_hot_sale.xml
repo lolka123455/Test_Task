@@ -1,0 +1,62 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black"
+    android:gravity="center"
+    android:orientation="horizontal"
+    tools:paddingStart="@dimen/margin_16">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="@dimen/margin_16"
+        android:layout_marginStart="@dimen/margin_32"
+        android:layout_marginEnd="16dp"
+        android:orientation="vertical">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/shimmer_round_shape_white"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:src="@drawable/round_shape_shimmer" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/shimmer_tv_line_1"
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:layout_marginTop="@dimen/margin_16"
+            android:background="@color/shimmer" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/shimmer_tv_line_2"
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:layout_marginTop="@dimen/margin_16"
+            android:background="@color/shimmer" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/shimmer_tv_line_3"
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:layout_marginTop="@dimen/margin_16"
+            android:background="@color/shimmer" />
+
+        <Button
+            android:id="@+id/shimmer_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginTop="@dimen/margin_18"
+            android:backgroundTint="@color/shimmer" />
+
+    </LinearLayout>
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/shimmer_image_view"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/hot_sales_view_pager_height"
+        android:layout_marginTop="@dimen/margin_16"
+        android:layout_marginBottom="@dimen/margin_16"
+        android:background="@color/shimmer" />
+
+</LinearLayout>
