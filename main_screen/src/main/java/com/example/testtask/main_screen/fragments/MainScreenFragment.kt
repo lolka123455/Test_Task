@@ -207,9 +207,9 @@ class MainScreenFragment : Fragment() {
             selectedCategoryTag.onEach {
                 categoriesDelegateAdapter.setSelectedItem(it)
             }.launchIn(viewLifecycleOwner.lifecycleScope)
-            brands.observe(viewLifecycleOwner) {
-                this@MainScreenFragment.brandsFilterItems = it
-            }
+            brands.onEach {
+                brandsFilterItems = it
+            }.launchIn(viewLifecycleOwner.lifecycleScope)
             prices.observe(viewLifecycleOwner) {
                 this@MainScreenFragment.pricesFilterItems = it
             }

@@ -43,8 +43,8 @@ class MainViewModel(
     private val _selectedCategoryTag = MutableStateFlow(CategoryItemTag.PHONE)
     val selectedCategoryTag: StateFlow<CategoryItemTag> = _selectedCategoryTag
 
-    private val _brands = MutableLiveData<List<String>>()
-    val brands: LiveData<List<String>> = _brands
+    private val _brands = MutableStateFlow(listOf("Samsung"))
+    val brands: StateFlow<List<String>> = _brands
 
     private val _prices = MutableLiveData(listOf("$0 - $10000"))
     val prices: LiveData<List<String>> = _prices
@@ -126,7 +126,7 @@ class MainViewModel(
                 it.extractBrand()
             }
             val brands = (bestSellerBrands + homeStoreBrands).distinct()
-            _brands.postValue(brands)
+            _brands.value = brands
             selectedBrand = brands[0]
         }
     }
@@ -157,7 +157,7 @@ class MainViewModel(
         _brands.value?.let { brands ->
             val selectedBrandIndex = brands.indexOf(selectedBrand)
             Collections.swap(brands, selectedBrandIndex, 0)
-            _brands.postValue(brands)
+            _brands.value = brands
         }
     }
 
