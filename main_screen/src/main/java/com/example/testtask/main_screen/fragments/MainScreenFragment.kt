@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.testtask.state_network_connection.R
@@ -25,6 +26,8 @@ import com.example.testtask.main_screen.viewmodel.MainViewModel
 import com.example.testtask.navigation.AppScreens
 import com.example.testtask.state_network_connection.UiState
 import com.google.android.material.bottomsheet.BottomSheetDialog
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
@@ -192,27 +195,27 @@ class MainScreenFragment : Fragment() {
 
     private fun observe() {
         with(viewModel) {
-            uiState.observe(viewLifecycleOwner) {
+            uiState.onEach {
                 updateUiState(it)
-            }
-            mainPageUiItems.observe(viewLifecycleOwner) {
+            }.launchIn(viewLifecycleOwner.lifecycleScope)
+            mainPageUiItems.onEach {
                 compositeAdapter.submitList(it)
-            }
-            selectedCategoryTag.observe(viewLifecycleOwner) {
-                categoriesDelegateAdapter.setSelectedItem(it)
-            }
-            brands.observe(viewLifecycleOwner) {
-                this@MainScreenFragment.brandsFilterItems = it
-            }
-            prices.observe(viewLifecycleOwner) {
-                this@MainScreenFragment.pricesFilterItems = it
-            }
-            sizes.observe(viewLifecycleOwner) {
-                this@MainScreenFragment.sizesFilterItems = it
-            }
-            cartSize.observe(viewLifecycleOwner) {
+            }.launchIn(viewLifecycleOwner.lifecycleScope)
+            cartSize.onEach {
                 setCartSize(it)
-            }
+            }.launchIn(viewLifecycleOwner.lifecycleScope)
+            selectedCategoryTag.onEach {
+                categoriesDelegateAdapter.setSelectedItem(it)
+            }.launchIn(viewLifecycleOwner.lifecycleScope)
+            brands.onEach {
+                brandsFilterItems = it
+            }.launchIn(viewLifecycleOwner.lifecycleScope)
+            prices.onEach {
+                pricesFilterItems = it
+            }.launchIn(viewLifecycleOwner.lifecycleScope)
+            sizes.onEach {
+                sizesFilterItems = it
+            }.launchIn(viewLifecycleOwner.lifecycleScope)
         }
     }
 
