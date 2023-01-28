@@ -204,9 +204,9 @@ class MainScreenFragment : Fragment() {
             cartSize.onEach {
                 setCartSize(it)
             }.launchIn(viewLifecycleOwner.lifecycleScope)
-            selectedCategoryTag.observe(viewLifecycleOwner) {
+            selectedCategoryTag.onEach {
                 categoriesDelegateAdapter.setSelectedItem(it)
-            }
+            }.launchIn(viewLifecycleOwner.lifecycleScope)
             brands.observe(viewLifecycleOwner) {
                 this@MainScreenFragment.brandsFilterItems = it
             }

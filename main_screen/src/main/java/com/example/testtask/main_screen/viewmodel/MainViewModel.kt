@@ -40,8 +40,8 @@ class MainViewModel(
     private val _cartSize = MutableStateFlow(0)
     val cartSize: StateFlow<Int> = _cartSize
 
-    private val _selectedCategoryTag = MutableLiveData(CategoryItemTag.PHONE)
-    val selectedCategoryTag: LiveData<CategoryItemTag> = _selectedCategoryTag
+    private val _selectedCategoryTag = MutableStateFlow(CategoryItemTag.PHONE)
+    val selectedCategoryTag: StateFlow<CategoryItemTag> = _selectedCategoryTag
 
     private val _brands = MutableLiveData<List<String>>()
     val brands: LiveData<List<String>> = _brands
@@ -149,7 +149,7 @@ class MainViewModel(
     }
 
     fun changeCategory(tag: CategoryItemTag) {
-        _selectedCategoryTag.postValue(tag)
+        _selectedCategoryTag.value = tag
     }
 
     fun setSelectedBrand(brand: String) {
