@@ -1,20 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginTop="@dimen/margin_12">
 
-    <ProgressBar
-        android:id="@+id/hotSalesProgressBar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:indeterminateTint="@color/orange" />
-
-    <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/hotSalesViewPager"
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/shimmerLayoutHotSales"
         android:layout_width="match_parent"
-        android:layout_height="250dp"
-        android:orientation="horizontal" />
+        android:layout_height="match_parent"
+        app:shimmer_duration="2000"
+        app:shimmer_repeat_count="@integer/material_motion_duration_short_1">
+
+        <include
+            android:id="@+id/shimmer"
+            layout="@layout/shimmer_item_hot_sale" />
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/hotSalesViewPager"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:orientation="horizontal" />
+
+    </com.facebook.shimmer.ShimmerFrameLayout>
 
 </FrameLayout>

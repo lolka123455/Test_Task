@@ -23,13 +23,15 @@ class HotSalesViewPagerAdapter(
         val item = hotSales[position]
         with(holder.binding) {
             holder.itemView.setOnClickListener { itemClickListener(item) }
+
+            titleHotSaleTextView.text = item.title
+            subtitleTextView.text = item.subtitle
+            newTagContainer.visibility = if (item.isNew) View.VISIBLE else View.INVISIBLE
+
             Glide.with(hotSaleImageView)
                 .load(item.picture)
                 .override(600, 400)
                 .into(hotSaleImageView)
-            titleHotSaleTextView.text = item.title
-            subtitleTextView.text = item.subtitle
-            newTagContainer.visibility = if (item.isNew) View.VISIBLE else View.INVISIBLE
         }
     }
 

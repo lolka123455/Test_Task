@@ -22,11 +22,11 @@ class BestSellerDelegateAdapter(private val bestSellerItemClickListener: (BestSe
 
     override fun bindViewHolder(model: BestSellerDelegateItem, viewHolder: BestSellerViewHolder) {
         with(viewHolder) {
-            progressBar.visibility = if (model.bestSellers.isEmpty()) {
-                View.VISIBLE
+            if (model.bestSellers.isEmpty()) {
+                shimmer.showShimmer(true)
                 return
             } else {
-                View.GONE
+                shimmer.hideShimmer()
             }
             recyclerView.adapter = BestSellerRecyclerViewAdapter(
                 bestSellers = model.bestSellers,
@@ -36,10 +36,10 @@ class BestSellerDelegateAdapter(private val bestSellerItemClickListener: (BestSe
     }
 
     inner class BestSellerViewHolder(
-        val binding: DelegateItemBestSellerRecyclerviewBinding
+        binding: DelegateItemBestSellerRecyclerviewBinding
     ) : RecyclerView.ViewHolder(binding.root) {
 
-        val progressBar = binding.bestSellerProgressBar
+        val shimmer = binding.shimmerLayoutBestSeller
         val recyclerView = binding.bestSellerRecyclerView
     }
 }
