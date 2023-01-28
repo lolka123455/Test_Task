@@ -37,8 +37,8 @@ class MainViewModel(
     val mainPageUiItems: Flow<List<DelegateAdapterItem>>
         get() = mainPageUiItemsFlow
 
-    private val _cartSize = MutableLiveData<Int>()
-    val cartSize: LiveData<Int> = _cartSize
+    private val _cartSize = MutableStateFlow(0)
+    val cartSize: StateFlow<Int> = _cartSize
 
     private val _selectedCategoryTag = MutableLiveData(CategoryItemTag.PHONE)
     val selectedCategoryTag: LiveData<CategoryItemTag> = _selectedCategoryTag
@@ -141,7 +141,7 @@ class MainViewModel(
         viewModelScope.launch(Dispatchers.IO) {
             val cartCallResult = getCartUseCase.execute()
             if (cartCallResult is FetchResult.SuccessDataUpload) {
-                _cartSize.postValue(cartCallResult.data.itemsCount)
+                _cartSize.value = cartCallResult.data.itemsCount
             } else {
                 Log.e("cart", "error case")
             }

@@ -201,6 +201,9 @@ class MainScreenFragment : Fragment() {
             mainPageUiItems.onEach {
                 compositeAdapter.submitList(it)
             }.launchIn(viewLifecycleOwner.lifecycleScope)
+            cartSize.onEach {
+                setCartSize(it)
+            }.launchIn(viewLifecycleOwner.lifecycleScope)
             selectedCategoryTag.observe(viewLifecycleOwner) {
                 categoriesDelegateAdapter.setSelectedItem(it)
             }
@@ -212,9 +215,6 @@ class MainScreenFragment : Fragment() {
             }
             sizes.observe(viewLifecycleOwner) {
                 this@MainScreenFragment.sizesFilterItems = it
-            }
-            cartSize.observe(viewLifecycleOwner) {
-                setCartSize(it)
             }
         }
     }
