@@ -23,8 +23,10 @@ import com.example.testtask.detail_screen.viewmodel.DetailsViewModel
 import com.example.testtask.detail_screen.adapters.ProductImagesViewPagerAdapter
 import com.example.testtask.navigation.AppScreens
 import com.example.testtask.state_network_connection.UiState
+import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import kotlin.math.abs
 
@@ -38,7 +40,6 @@ class DetailsScreenFragment : Fragment() {
 
     private var colorImageViews: List<ImageView> = emptyList()
     private lateinit var chosenColorImageView: ImageView
-
 
     private var capacityTextViews: List<TextView> = emptyList()
     private lateinit var chosenCapacityTextView: TextView
@@ -188,14 +189,20 @@ class DetailsScreenFragment : Fragment() {
     }
 
     private fun observe() {
-        with(viewModel) {
-            productDetails.onEach {
-                displayProductDetails(it)
-            }.launchIn(viewLifecycleOwner.lifecycleScope)
-            uiState.onEach {
-                updateUiState(it)
-            }.launchIn(viewLifecycleOwner.lifecycleScope)
-        }
+        observeProductDetails()
+        observeUIState()
+    }
+
+    private fun observeProductDetails(){
+        viewModel.productDetails
+            .onEach { displayProductDetails(it) }
+            .launchIn(viewLifecycleOwner.lifecycleScope)
+    }
+
+    private fun observeUIState(){
+        viewModel.uiState
+            .onEach { updateUiState(it) }
+            .launchIn(viewLifecycleOwner.lifecycleScope)
     }
 
     /**
