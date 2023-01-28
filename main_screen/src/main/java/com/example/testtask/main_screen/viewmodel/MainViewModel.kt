@@ -26,29 +26,28 @@ import java.util.*
 class MainViewModel(
     private val getMainPageUseCase: GetMainPageUseCase,
     private val getCartUseCase: GetCartUseCase,
-    private val dispatcherIo: CoroutineDispatcher = Dispatchers.IO,
-    private val dispatcherDefault: CoroutineDispatcher = Dispatchers.Default
 ) : ViewModel() {
 
     private val _uiState = MutableLiveData<UiState>()
-
-    private lateinit var mainPageUiItemsFlow: Flow<List<DelegateAdapterItem>>
-
-    private val _cartSize = MutableLiveData<Int>()
-    private val _selectedCategoryTag = MutableLiveData<CategoryItemTag>(CategoryItemTag.PHONE)
-    private val _brands = MutableLiveData<List<String>>()
-    private val _prices = MutableLiveData<List<String>>(listOf("$0 - $10000"))
-    private val _sizes = MutableLiveData<List<String>>(listOf("4.5 to 5.5 inches"))
-
     val uiState: LiveData<UiState> = _uiState
 
+    private lateinit var mainPageUiItemsFlow: Flow<List<DelegateAdapterItem>>
     val mainPageUiItems: LiveData<List<DelegateAdapterItem>>
         get() = mainPageUiItemsFlow.asLiveData()
 
+    private val _cartSize = MutableLiveData<Int>()
     val cartSize: LiveData<Int> = _cartSize
+
+    private val _selectedCategoryTag = MutableLiveData(CategoryItemTag.PHONE)
     val selectedCategoryTag: LiveData<CategoryItemTag> = _selectedCategoryTag
+
+    private val _brands = MutableLiveData<List<String>>()
     val brands: LiveData<List<String>> = _brands
+
+    private val _prices = MutableLiveData(listOf("$0 - $10000"))
     val prices: LiveData<List<String>> = _prices
+
+    private val _sizes = MutableLiveData(listOf("4.5 to 5.5 inches"))
     val sizes: LiveData<List<String>> = _sizes
 
     private var bestSeller: List<BestSeller> = emptyList()
@@ -103,7 +102,7 @@ class MainViewModel(
     }
 
     private fun getMainPage() {
-        viewModelScope.launch(dispatcherIo) {
+        viewModelScope.launch(Dispatchers.IO) {
             val mainPageCallResult = getMainPageUseCase.execute()
             if (mainPageCallResult is FetchResult.SuccessDataUpload) {
                 hotSale = mainPageCallResult.data.hotSale
@@ -117,7 +116,7 @@ class MainViewModel(
     }
 
     private fun getFilterOptions() {
-        viewModelScope.launch(dispatcherDefault) {
+        viewModelScope.launch(Dispatchers.Default) {
             val bestSellerBrands = bestSeller.map {
                 it.extractBrand()
             }
@@ -137,7 +136,7 @@ class MainViewModel(
         title.split(" ").first()
 
     private fun getCart() {
-        viewModelScope.launch(dispatcherIo) {
+        viewModelScope.launch(Dispatchers.IO) {
             val cartCallResult = getCartUseCase.execute()
             if (cartCallResult is FetchResult.SuccessDataUpload) {
                 _cartSize.postValue(cartCallResult.data.itemsCount)
