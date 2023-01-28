@@ -198,9 +198,9 @@ class MainScreenFragment : Fragment() {
             uiState.onEach {
                 updateUiState(it)
             }.launchIn(viewLifecycleOwner.lifecycleScope)
-            mainPageUiItems.observe(viewLifecycleOwner) {
+            mainPageUiItems.onEach {
                 compositeAdapter.submitList(it)
-            }
+            }.launchIn(viewLifecycleOwner.lifecycleScope)
             selectedCategoryTag.observe(viewLifecycleOwner) {
                 categoriesDelegateAdapter.setSelectedItem(it)
             }

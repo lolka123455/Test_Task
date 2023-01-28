@@ -34,8 +34,8 @@ class MainViewModel(
     val uiState: StateFlow<UiState> = _uiState
 
     private lateinit var mainPageUiItemsFlow: Flow<List<DelegateAdapterItem>>
-    val mainPageUiItems: LiveData<List<DelegateAdapterItem>>
-        get() = mainPageUiItemsFlow.asLiveData()
+    val mainPageUiItems: Flow<List<DelegateAdapterItem>>
+        get() = mainPageUiItemsFlow
 
     private val _cartSize = MutableLiveData<Int>()
     val cartSize: LiveData<Int> = _cartSize
