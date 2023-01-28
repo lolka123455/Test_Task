@@ -46,11 +46,11 @@ class MainViewModel(
     private val _brands = MutableStateFlow(listOf("Samsung"))
     val brands: StateFlow<List<String>> = _brands
 
-    private val _prices = MutableLiveData(listOf("$0 - $10000"))
-    val prices: LiveData<List<String>> = _prices
+    private val _prices = MutableStateFlow(listOf("$0 - $10000"))
+    val prices: StateFlow<List<String>> = _prices
 
-    private val _sizes = MutableLiveData(listOf("4.5 to 5.5 inches"))
-    val sizes: LiveData<List<String>> = _sizes
+    private val _sizes = MutableStateFlow(listOf("4.5 to 5.5 inches"))
+    val sizes: StateFlow<List<String>> = _sizes
 
     private var bestSeller: List<BestSeller> = emptyList()
     private var hotSale: List<HotSale> = emptyList()
@@ -154,7 +154,7 @@ class MainViewModel(
 
     fun setSelectedBrand(brand: String) {
         selectedBrand = brand
-        _brands.value?.let { brands ->
+        _brands.value.let { brands ->
             val selectedBrandIndex = brands.indexOf(selectedBrand)
             Collections.swap(brands, selectedBrandIndex, 0)
             _brands.value = brands

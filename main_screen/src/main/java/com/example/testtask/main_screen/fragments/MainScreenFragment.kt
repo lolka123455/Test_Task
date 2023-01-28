@@ -210,12 +210,12 @@ class MainScreenFragment : Fragment() {
             brands.onEach {
                 brandsFilterItems = it
             }.launchIn(viewLifecycleOwner.lifecycleScope)
-            prices.observe(viewLifecycleOwner) {
-                this@MainScreenFragment.pricesFilterItems = it
-            }
-            sizes.observe(viewLifecycleOwner) {
-                this@MainScreenFragment.sizesFilterItems = it
-            }
+            prices.onEach {
+                pricesFilterItems = it
+            }.launchIn(viewLifecycleOwner.lifecycleScope)
+            sizes.onEach {
+                sizesFilterItems = it
+            }.launchIn(viewLifecycleOwner.lifecycleScope)
         }
     }
 
