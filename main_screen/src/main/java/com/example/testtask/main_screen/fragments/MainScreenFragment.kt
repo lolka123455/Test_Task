@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.testtask.state_network_connection.R
@@ -25,6 +26,8 @@ import com.example.testtask.main_screen.viewmodel.MainViewModel
 import com.example.testtask.navigation.AppScreens
 import com.example.testtask.state_network_connection.UiState
 import com.google.android.material.bottomsheet.BottomSheetDialog
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
@@ -192,9 +195,9 @@ class MainScreenFragment : Fragment() {
 
     private fun observe() {
         with(viewModel) {
-            uiState.observe(viewLifecycleOwner) {
+            uiState.onEach {
                 updateUiState(it)
-            }
+            }.launchIn(viewLifecycleOwner.lifecycleScope)
             mainPageUiItems.observe(viewLifecycleOwner) {
                 compositeAdapter.submitList(it)
             }

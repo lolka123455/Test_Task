@@ -19,6 +19,8 @@ import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.launch
 import java.util.*
@@ -28,8 +30,8 @@ class MainViewModel(
     private val getCartUseCase: GetCartUseCase,
 ) : ViewModel() {
 
-    private val _uiState = MutableLiveData<UiState>()
-    val uiState: LiveData<UiState> = _uiState
+    private val _uiState = MutableStateFlow<UiState>(UiState.Loading)
+    val uiState: StateFlow<UiState> = _uiState
 
     private lateinit var mainPageUiItemsFlow: Flow<List<DelegateAdapterItem>>
     val mainPageUiItems: LiveData<List<DelegateAdapterItem>>
@@ -108,9 +110,9 @@ class MainViewModel(
                 hotSale = mainPageCallResult.data.hotSale
                 bestSeller = mainPageCallResult.data.bestSeller
                 getFilterOptions()
-                _uiState.postValue(UiState.Success)
+                _uiState.value = UiState.Success
             } else {
-                _uiState.postValue(UiState.Error)
+                _uiState.value = UiState.Error
             }
         }
     }
