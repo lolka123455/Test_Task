@@ -41,20 +41,34 @@ class CartScreenFragment : Fragment() {
     }
 
     private fun observe() {
-        with(viewModel) {
-            uiState.onEach {
-                updateUiState(it)
-            }.launchIn(viewLifecycleOwner.lifecycleScope)
-            cartItems.onEach {
-                adapter.currentList = it
-            }.launchIn(viewLifecycleOwner.lifecycleScope)
-            total.onEach {
-                binding.totalTextView.text = it.toPriceFormat()
-            }.launchIn(viewLifecycleOwner.lifecycleScope)
-            delivery.onEach {
-                binding.deliveryTextView.text = it
-            }.launchIn(viewLifecycleOwner.lifecycleScope)
-        }
+        observeUIState()
+        observeCartItems()
+        observeTotal()
+        observeDelivery()
+    }
+
+    private fun observeUIState(){
+        viewModel.uiState
+            .onEach { updateUiState(it) }
+            .launchIn(viewLifecycleOwner.lifecycleScope)
+    }
+
+    private fun observeCartItems(){
+        viewModel.cartItems
+            .onEach { adapter.currentList = it }
+            .launchIn(viewLifecycleOwner.lifecycleScope)
+    }
+
+    private fun observeTotal(){
+        viewModel.total
+            .onEach { binding.totalTextView.text = it.toPriceFormat() }
+            .launchIn(viewLifecycleOwner.lifecycleScope)
+    }
+
+    private fun observeDelivery(){
+        viewModel.delivery
+            .onEach { binding.deliveryTextView.text = it }
+            .launchIn(viewLifecycleOwner.lifecycleScope)
     }
 
     private fun updateUiState(state: UiState) {

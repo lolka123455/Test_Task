@@ -194,29 +194,55 @@ class MainScreenFragment : Fragment() {
     }
 
     private fun observe() {
-        with(viewModel) {
-            uiState.onEach {
-                updateUiState(it)
-            }.launchIn(viewLifecycleOwner.lifecycleScope)
-            mainPageUiItems.onEach {
-                compositeAdapter.submitList(it)
-            }.launchIn(viewLifecycleOwner.lifecycleScope)
-            cartSize.onEach {
-                setCartSize(it)
-            }.launchIn(viewLifecycleOwner.lifecycleScope)
-            selectedCategoryTag.onEach {
-                categoriesDelegateAdapter.setSelectedItem(it)
-            }.launchIn(viewLifecycleOwner.lifecycleScope)
-            brands.onEach {
-                brandsFilterItems = it
-            }.launchIn(viewLifecycleOwner.lifecycleScope)
-            prices.onEach {
-                pricesFilterItems = it
-            }.launchIn(viewLifecycleOwner.lifecycleScope)
-            sizes.onEach {
-                sizesFilterItems = it
-            }.launchIn(viewLifecycleOwner.lifecycleScope)
-        }
+        observeUIState()
+        observeMainPageUiItems()
+        observeCartSize()
+        observeSelectedCategoryTag()
+        observeBrands()
+        observePrices()
+        observeSizes()
+    }
+
+    private fun observeUIState(){
+        viewModel.uiState
+            .onEach { updateUiState(it) }
+            .launchIn(viewLifecycleOwner.lifecycleScope)
+    }
+
+    private fun observeMainPageUiItems(){
+        viewModel.mainPageUiItems
+            .onEach { compositeAdapter.submitList(it) }
+            .launchIn(viewLifecycleOwner.lifecycleScope)
+    }
+
+    private fun observeCartSize(){
+        viewModel.cartSize
+            .onEach { setCartSize(it) }
+            .launchIn(viewLifecycleOwner.lifecycleScope)
+    }
+
+    private fun observeSelectedCategoryTag(){
+        viewModel.selectedCategoryTag
+            .onEach { categoriesDelegateAdapter.setSelectedItem(it) }
+            .launchIn(viewLifecycleOwner.lifecycleScope)
+    }
+
+    private fun observeBrands(){
+        viewModel.brands
+            .onEach { brandsFilterItems = it }
+            .launchIn(viewLifecycleOwner.lifecycleScope)
+    }
+
+    private fun observePrices(){
+        viewModel.prices
+            .onEach { pricesFilterItems = it }
+            .launchIn(viewLifecycleOwner.lifecycleScope)
+    }
+
+    private fun observeSizes(){
+        viewModel.sizes
+            .onEach { sizesFilterItems = it }
+            .launchIn(viewLifecycleOwner.lifecycleScope)
     }
 
     private fun setCartSize(size: Int) {
