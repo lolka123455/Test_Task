@@ -11,6 +11,8 @@ When the download speed is slow then instead of a boring progress bar was used l
 
 Download apk - https://github.com/lolka123455/Test_Task/releases
 
+Figma - https://www.figma.com/file/ZB11LnTeIQtlMys9NoZfP3/test5?t=qlTectA9AShr0KlQ-0
+
 The API consists of three Get requests: 
 - Load basic information
 - Load detailed information about phone
