@@ -13,17 +13,18 @@
         android:gravity="center"
         android:orientation="vertical">
 
-        <ImageView
+        <com.google.android.material.imageview.ShapeableImageView
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:src="@drawable/ic_no_network"
             app:tint="@color/dark_blue" />
 
-        <TextView
+        <com.google.android.material.textview.MaterialTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="28dp"
             android:layout_marginTop="16dp"
+            android:fontFamily="@font/mark_pro"
             android:text="@string/oops_please_check_your_internet_connection"
             android:gravity="center"
             android:textColor="@color/dark_blue"
@@ -39,7 +40,7 @@
             android:clickable="true"
             android:focusable="true">
 
-            <TextView
+            <com.google.android.material.textview.MaterialTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingHorizontal="20dp"

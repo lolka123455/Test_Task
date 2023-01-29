@@ -29,6 +29,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_4"
+                android:fontFamily="@font/mark_pro"
                 android:text="@string/phone"
                 android:textColor="@color/dark_grey" />
 
@@ -52,6 +53,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_4"
+                android:fontFamily="@font/mark_pro"
                 android:text="@string/computer"
                 android:textColor="@color/dark_grey" />
 
@@ -75,6 +77,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_4"
+                android:fontFamily="@font/mark_pro"
                 android:text="@string/health"
                 android:textColor="@color/dark_grey" />
 
@@ -98,6 +101,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_4"
+                android:fontFamily="@font/mark_pro"
                 android:text="@string/books"
                 android:textColor="@color/dark_grey" />
 
@@ -121,7 +125,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_4"
-                android:text="@string/unknown" />
+                android:fontFamily="@font/mark_pro"
+                android:text="@string/unknown"
+                android:textColor="@color/dark_grey" />
 
         </LinearLayout>
 
