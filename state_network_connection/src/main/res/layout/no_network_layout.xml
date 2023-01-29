@@ -24,6 +24,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="28dp"
             android:layout_marginTop="16dp"
+            android:fontFamily="@font/mark_pro"
             android:text="@string/oops_please_check_your_internet_connection"
             android:gravity="center"
             android:textColor="@color/dark_blue"
