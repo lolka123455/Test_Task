@@ -9,6 +9,8 @@ At initial start data is loaded from network and cached, further all data is tak
 
 When the download speed is slow then instead of a boring progress bar was used library from facebook - shimmer
 
+Download apk - https://github.com/lolka123455/Test_Task/releases
+
 The API consists of three Get requests: 
 - Load basic information
 - Load detailed information about phone
