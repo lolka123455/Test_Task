@@ -9,7 +9,7 @@ At initial start data is loaded from network and cached, further all data is tak
 
 When the download speed is slow then instead of a boring progress bar was used library from facebook - shimmer
 
-Download apk - https://github.com/lolka123455/Test_Task/releases
+Download apk (choose the latest version or the one you want) - https://github.com/lolka123455/Test_Task/releases
 
 Figma - https://www.figma.com/file/ZB11LnTeIQtlMys9NoZfP3/test5?t=qlTectA9AShr0KlQ-0
 
@@ -124,6 +124,10 @@ SDK version
 - Cart Screen
 
 ![Cart Screen](https://user-images.githubusercontent.com/49922631/215333150-13404c09-1eb8-4f26-8757-b730931df64d.png)
+
+- State Network Connection Screen
+
+![State Network Connection Screen](https://user-images.githubusercontent.com/49922631/215512137-be4d8650-bfde-4b90-9cab-28965a27e2fa.jpg)
 
 - Shimmer effect
 
