@@ -15,7 +15,6 @@ import com.example.testtask.main_screen.adapters.hotSales.HotSalesDelegateItem
 import com.example.testtask.main_screen.adapters.search.SearchDelegateItem
 import com.example.testtask.main_screen.adapters.section.SectionDelegateItem
 import com.example.testtask.state_network_connection.FetchResult
-import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
@@ -98,9 +97,13 @@ class MainViewModel(
                         bestSellerDelegateItem
                     )
                 )
-                delay(500L)
+                setIssuanceDelay(1)
             }
         }
+    }
+
+    private suspend fun setIssuanceDelay(delayTime: Long) {
+        delay(delayTime)
     }
 
     private fun getMainPage() {
