@@ -19,7 +19,7 @@ class MainScreenRepositoryImpl(
     override suspend fun getMainPage(): FetchResult<MainPage> =
         try {
             getMainPageFromDatabase()
-        } catch (e: SQLiteException) {
+        } catch (e: NullPointerException) {
             val mainPageNetworkResult = getMainPageFromNetwork()
             if (mainPageNetworkResult is FetchResult.SuccessDataUpload) {
                 saveMainPageInDatabase(mainPageNetworkResult.data)
@@ -45,7 +45,7 @@ class MainScreenRepositoryImpl(
     override suspend fun getCart(): FetchResult<Cart> =
         try {
             getCartFromDatabase()
-        } catch (e: SQLiteException) {
+        } catch (e: NullPointerException) {
             val cartNetworkResult = getCartFromNetwork()
             if (cartNetworkResult is FetchResult.SuccessDataUpload) {
                 saveCartInDatabase(cartNetworkResult.data)
