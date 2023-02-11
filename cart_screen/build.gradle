@@ -80,4 +80,14 @@ dependencies {
     def gson_version = "2.10"
 
     implementation "com.google.code.gson:gson:$gson_version"
+
+    def fastadapter_version = "5.5.1"
+
+    implementation "com.mikepenz:fastadapter:$fastadapter_version"
+    implementation "com.mikepenz:fastadapter-extensions-binding:$fastadapter_version"
+    implementation "com.mikepenz:fastadapter-extensions-diff:$fastadapter_version"
+    implementation "com.mikepenz:fastadapter-extensions-drag:$fastadapter_version"
+    implementation "com.mikepenz:fastadapter-extensions-swipe:$fastadapter_version"
+    implementation "com.mikepenz:fastadapter-extensions-ui:$fastadapter_version"
+    implementation "com.mikepenz:fastadapter-extensions-utils:$fastadapter_version"
 }
