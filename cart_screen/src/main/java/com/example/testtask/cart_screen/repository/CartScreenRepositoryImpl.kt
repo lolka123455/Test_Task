@@ -9,6 +9,7 @@ import com.example.testtask.cart_screen.entities.Cart
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.io.IOException
+import java.lang.Exception
 
 /**
  * Implementation of the [CartScreenRepository] interface that handles data operations for the cart screen.
@@ -22,51 +23,27 @@ class CartScreenRepositoryImpl(
     private val cartScreenDao: CartScreenDao
 ) : CartScreenRepository {
 
-    /**
-     * Retrieves the cart details from the local database, if not found, it fetches the data from the network.
-     *
-     * @return [FetchResult] that contains the cart details or an error message
-     */
-
     override suspend fun getCart(): FetchResult<Cart> =
-        withContext(Dispatchers.IO) {
-            try {
-                val cart = cartScreenDao.getCart()
-                if (cart != null) {
-                    FetchResult.SuccessDataUpload(cart.mapToDomain())
-                } else {
-                    val cartNetworkResult = getCartFromNetwork()
-                    if (cartNetworkResult is FetchResult.SuccessDataUpload) {
-                        saveCartInDatabase(cartNetworkResult.data)
-                    }
-                    cartNetworkResult
-                }
-            } catch (e: SQLiteException) {
-                FetchResult.ErrorLoadingData(e.message)
+        try {
+            getCartFromDatabase()
+        } catch (e: NullPointerException) {
+            val cartNetworkResult = getCartFromNetwork()
+            if (cartNetworkResult is FetchResult.SuccessDataUpload) {
+                saveCartInDatabase(cartNetworkResult.data)
             }
+            cartNetworkResult
         }
 
-    /**
-     * Fetches the cart details from the network.
-     *
-     * @return [FetchResult] that contains the cart details or an error message
-     */
+    private fun getCartFromDatabase(): FetchResult<Cart> =
+        FetchResult.SuccessDataUpload(cartScreenDao.getCart().mapToDomain())
 
     private suspend fun getCartFromNetwork(): FetchResult<Cart> =
-        withContext(Dispatchers.IO) {
-            try {
-                val cart = cartScreenService.getCart().mapToDomain()
-                FetchResult.SuccessDataUpload(cart)
-            } catch (e: IOException) {
-                FetchResult.ErrorLoadingData(e.message)
-            }
+        try {
+            val cart = cartScreenService.getCart().mapToDomain()
+            FetchResult.SuccessDataUpload(cart)
+        } catch (e: Exception) {
+            FetchResult.ErrorLoadingData(e.message)
         }
-
-    /**
-     * Saves the cart details in the local database.
-     *
-     * @param details [Cart] object that needs to be saved
-     */
 
     private fun saveCartInDatabase(details: Cart) {
         cartScreenDao.saveCart(CartLocalDto.fromDomain(details))
