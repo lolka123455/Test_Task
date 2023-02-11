@@ -8,6 +8,7 @@ import android.widget.FrameLayout
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.testtask.cart_screen.adapters.CartAdapter
 import com.example.testtask.cart_screen.databinding.FragmentCartBinding
 import com.example.testtask.cart_screen.adapters.CartItemsAdapter
 import com.example.testtask.cart_screen.viewmodel.CartViewModel
@@ -21,7 +22,7 @@ class CartScreenFragment : Fragment() {
 
     private lateinit var binding: FragmentCartBinding
     private val viewModel: CartViewModel by viewModel()
-    private val adapter: CartItemsAdapter by lazy { CartItemsAdapter() }
+    private val adapter: CartAdapter = CartAdapter()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,7 +34,7 @@ class CartScreenFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        binding.recyclerView.adapter = adapter
         binding.backImageView.setOnClickListener { requireActivity().onBackPressed() }
 
         observe()
@@ -55,7 +56,7 @@ class CartScreenFragment : Fragment() {
 
     private fun observeCartItems(){
         viewModel.cartItems
-            .onEach { adapter.currentList = it }
+            .onEach { adapter.submitList(it) }
             .launchIn(viewLifecycleOwner.lifecycleScope)
     }
 
