@@ -17,35 +17,25 @@ class DetailsScreenRepositoryImpl(
 ) : DetailsScreenRepository {
 
     override suspend fun getDetails(): FetchResult<ProductDetails> =
-        withContext(Dispatchers.IO) {
-            try {
-                val productDetails = getProductDetailsFromDatabase()
-                if (productDetails != null) {
-                    return@withContext FetchResult.SuccessDataUpload(productDetails)
-                } else {
-                    val productDetailsNetworkResult = getProductDetailsFromNetwork()
-                    if (productDetailsNetworkResult is FetchResult.SuccessDataUpload) {
-                        saveProductDetailsInDatabase(productDetailsNetworkResult.data)
-                    }
-                    return@withContext productDetailsNetworkResult
-                }
-            } catch (e: SQLiteException) {
-                return@withContext FetchResult.ErrorLoadingData(e.message ?: "Unknown Error")
+        try {
+            getProductDetailsFromDatabase()
+        } catch (e: NullPointerException) {
+            val productDetailsNetworkResult = getProductDetailsFromNetwork()
+            if (productDetailsNetworkResult is FetchResult.SuccessDataUpload) {
+                saveProductDetailsInDatabase(productDetailsNetworkResult.data)
             }
+            productDetailsNetworkResult
         }
 
-    private fun getProductDetailsFromDatabase(): ProductDetails {
-        return detailsScreenDao.getProductDetails().mapToDomain()
-    }
+    private fun getProductDetailsFromDatabase(): FetchResult<ProductDetails> =
+        FetchResult.SuccessDataUpload(detailsScreenDao.getProductDetails().mapToDomain())
 
     private suspend fun getProductDetailsFromNetwork(): FetchResult<ProductDetails> =
-        withContext(Dispatchers.IO) {
-            try {
-                val productDetails = detailsScreenService.getDetails().mapToDomain()
-                return@withContext FetchResult.SuccessDataUpload(productDetails)
-            } catch (e: IOException) {
-                return@withContext FetchResult.ErrorLoadingData(e.message ?: "Unknown Error")
-            }
+        try {
+            val productDetails = detailsScreenService.getDetails().mapToDomain()
+            FetchResult.SuccessDataUpload(productDetails)
+        } catch (e: Exception) {
+            FetchResult.ErrorLoadingData(e.message)
         }
 
     private fun saveProductDetailsInDatabase(details: ProductDetails) {
